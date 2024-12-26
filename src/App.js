@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
+import CulturalEvent from "./pages/CulturalEvent";
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route />
+        <Route path="/cultural" element={<CulturalEvent />}/>
       </Routes>
     </BrowserRouter>
     </>
