@@ -11,11 +11,9 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/cultural" element={<CulturalEvent />}/>
+        <Route path="/park" element={<ParkList />}/>
       </Routes>
     </BrowserRouter>
-    <div>
-      <ParkList />
-    </div>
     </>
   );
 };
