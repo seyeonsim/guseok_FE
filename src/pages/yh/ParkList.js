@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import DropDown from "../../components/yh/DropDown";
 import ParkCard from "../../components/yh/ParkCard";
 import KakaoMap from "../../components/yh/KakaoMap";
-import "../../styles/yh/ParkList.css"; // 스타일 import
+import "../../styles/yh/ParkList.css";
 
 const ParkList = () => {
   const [parks, setParks] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [filteredParks, setFilteredParks] = useState([]);
+  const [center, setCenter] = useState({ lat: 37.5665, lng: 126.9780 }); // 초기값: 서울시청
 
   useEffect(() => {
     fetch("http://localhost:8080/api/parks")
@@ -16,10 +17,9 @@ const ParkList = () => {
         setParks(data);
         setFilteredParks(data);
 
-        // 중복 제거한 지역 리스트 생성 + 가나다순 정렬
         const uniqueDistricts = [...new Set(data.map((park) => park.district))]
-          .filter((district) => district) // null 제거
-          .sort((a, b) => a.localeCompare(b, "ko")); // 한글 정렬
+          .filter((district) => district)
+          .sort((a, b) => a.localeCompare(b, "ko"));
 
         setDistricts(uniqueDistricts);
       })
@@ -29,14 +29,20 @@ const ParkList = () => {
   const handleDistrictSelect = (district) => {
     if (district === "") {
       setFilteredParks(parks);
+      setCenter({ lat: 37.5665, lng: 126.9780 }); // 전체 지역일 경우 기본값으로 이동
     } else {
-      setFilteredParks(parks.filter((park) => park.district === district));
+      const filtered = parks.filter((park) => park.district === district);
+      setFilteredParks(filtered);
+
+      if (filtered.length > 0) {
+        // 첫 번째 공원의 좌표를 중심으로 설정
+        setCenter({ lat: filtered[0].latitude, lng: filtered[0].longitude });
+      }
     }
   };
 
   return (
     <div className="park-list-container">
-      {/* 목록 영역 */}
       <div className="park-list">
         <h2>공원 목록</h2>
         <p>지도를 움직여 공원을 확인하세요!</p>
@@ -47,10 +53,8 @@ const ParkList = () => {
           ))}
         </div>
       </div>
-
-      {/* 지도 영역 */}
       <div className="map-container">
-        <KakaoMap parks={filteredParks} />
+        <KakaoMap parks={filteredParks} center={center} />
       </div>
     </div>
   );
