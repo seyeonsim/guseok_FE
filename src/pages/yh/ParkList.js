@@ -10,21 +10,23 @@ const ParkList = () => {
   const [filteredParks, setFilteredParks] = useState([]);
   const [center, setCenter] = useState({ lat: 37.5665, lng: 126.9780 }); // 초기값: 서울시청
 
+  // useEffect로 데이터 fetch
   useEffect(() => {
     fetch("http://localhost:8080/api/parks")
       .then((response) => response.json())
       .then((data) => {
-        setParks(data);
-        setFilteredParks(data);
+        setParks(data); // 모든 공원 데이터 설정
+        setFilteredParks(data); // 초기값으로 전체 공원 설정
 
+        // 고유한 지역 이름 추출 및 정렬
         const uniqueDistricts = [...new Set(data.map((park) => park.district))]
           .filter((district) => district)
           .sort((a, b) => a.localeCompare(b, "ko"));
 
-        setDistricts(uniqueDistricts);
+        setDistricts(uniqueDistricts); // 지역 리스트 설정
       })
       .catch((error) => console.error("Error fetching parks:", error));
-  }, []);
+  }, []); // 빈 배열로 설정 -> 컴포넌트 마운트 시 한 번 실행
 
   const handleDistrictSelect = (district) => {
     if (district === "") {
@@ -35,7 +37,6 @@ const ParkList = () => {
       setFilteredParks(filtered);
 
       if (filtered.length > 0) {
-        // 첫 번째 공원의 좌표를 중심으로 설정
         setCenter({ lat: filtered[0].latitude, lng: filtered[0].longitude });
       }
     }
