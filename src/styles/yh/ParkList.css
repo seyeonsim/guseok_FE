@@ -1,0 +1,25 @@
+.park-list-container {
+  display: flex;
+}
+
+.park-list {
+  width: 50%;
+  padding: 20px;
+  overflow-y: auto; /* 세로 스크롤 추가 */
+  max-height: 500px; /* 스크롤 영역의 높이 제한 */
+  border-right: 1px solid #ccc; /* 구분선 추가 (선택사항) */
+}
+
+.park-list h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.park-list p {
+  margin-bottom: 20px;
+}
+
+.map-container {
+  width: 50%;
+  height: 500px;
+}
