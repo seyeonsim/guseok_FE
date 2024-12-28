@@ -1,13 +1,16 @@
+/* 전체 컨테이너 스타일 */
 .park-list-container {
   display: flex;
-  height: 100vh;
-  gap: 20px;
+  gap: 20px; /* 목록과 지도 간 간격 */
   padding: 20px;
+  background-color: #f9f9f9; /* 배경색 */
+  height: 100vh;
   box-sizing: border-box;
 }
 
+/* 공원 목록 */
 .park-list {
-  width: 50%;
+  flex: 1; /* 목록이 지도의 너비를 기준으로 동적으로 조정됨 */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -20,47 +23,83 @@
 
 .park-list-cards {
   flex-grow: 1;
-  overflow-y: auto; /* 스크롤 활성화 */
-  background: #f9f9f9;
+  overflow-y: auto; /* 스크롤 가능 */
+  background: white; /* 목록 배경 */
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  max-height: calc(100% - 140px); /* 부모 컨테이너 높이에 비례 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 박스 그림자 */
 }
 
-
+/* 공원 카드 */
 .park-card {
   display: flex;
+  align-items: center; /* 이미지와 텍스트가 세로 중심에 위치 */
   background: white;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 30px 10px; /* 카드 내부 여백 추가 */
+  height: 180px; /* 카드 고정 높이 */
 }
 
+.park-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 이미지와 설명 비율 4:6 조정 */
 .park-image {
-  width: 40%;
-  height: 220px;
+  flex: 4; /* 이미지가 40% 차지 */
+  height: 200px; /* 고정 높이 */
 }
 
 .park-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* 비율 유지 */
   border-right: 1px solid #ddd;
-  border-radius: 8px 0 0 8px;
 }
 
 .park-details {
+  flex: 6; /* 설명이 60% 차지 */
   padding: 10px;
-  width: 65%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .park-name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  color: #007bff;
+}
+
+.park-address,
+.park-phone {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.park-info {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 4px;
+}
+
+/* 지도 컨테이너 */
+.map-container {
+  flex: 1; /* 지도와 목록이 화면 너비를 적절히 나눔 */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
 }

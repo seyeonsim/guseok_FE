@@ -31,15 +31,22 @@ const ParkDetail = () => {
 
   return (
     <div className="park-detail-container">
-      <h2 className="park-name">{park.name || "공원 이름 없음"}</h2>
+      <div className="park-header">
+        <h2 className="park-name">{park.name || "공원 이름 없음"}</h2>
+        <button className="back-button" onClick={() => window.history.back()}>
+          목록 조회
+        </button>
+      </div>
       <hr />
       <div className="park-content">
         <div className="park-images">
+          <div className="image-label">사진</div>
           <img
             src={park.image || "/images/default.jpg"}
             alt={`${park.name} 이미지`}
             className="park-image"
           />
+          <div className="image-label">지도</div>
           <img
             src={park.map || "/images/default-map.jpg"}
             alt={`${park.name} 지도`}
@@ -72,7 +79,11 @@ const ParkDetail = () => {
               <p>링크</p>
               <div className="info-box">
                 {park.link ? (
-                  <a href={park.link} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={park.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     링크 보기
                   </a>
                 ) : (
@@ -83,9 +94,6 @@ const ParkDetail = () => {
           </div>
         </div>
       </div>
-      <button className="back-button" onClick={() => window.history.back()}>
-        목록 조회
-      </button>
     </div>
   );
 };
