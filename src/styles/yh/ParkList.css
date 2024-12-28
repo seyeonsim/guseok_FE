@@ -1,25 +1,66 @@
 .park-list-container {
   display: flex;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .park-list {
   width: 50%;
-  padding: 20px;
-  overflow-y: auto; /* 세로 스크롤 추가 */
-  max-height: 500px; /* 스크롤 영역의 높이 제한 */
-  border-right: 1px solid #ccc; /* 구분선 추가 (선택사항) */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
-.park-list h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+.park-list-header {
+  margin-bottom: 16px;
 }
 
-.park-list p {
-  margin-bottom: 20px;
+.park-list-cards {
+  flex-grow: 1;
+  overflow-y: auto; /* 스크롤 활성화 */
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: calc(100% - 140px); /* 부모 컨테이너 높이에 비례 */
 }
 
-.map-container {
-  width: 50%;
-  height: 500px;
+
+.park-card {
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.park-image {
+  width: 40%;
+  height: 220px;
+}
+
+.park-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-right: 1px solid #ddd;
+  border-radius: 8px 0 0 8px;
+}
+
+.park-details {
+  padding: 10px;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.park-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }

@@ -12,7 +12,7 @@ const ParkList = () => {
 
   // useEffect로 데이터 fetch
   useEffect(() => {
-    fetch("http://localhost:8080/api/parks")
+    fetch("http://localhost:8080/park")
       .then((response) => response.json())
       .then((data) => {
         setParks(data); // 모든 공원 데이터 설정
@@ -45,12 +45,14 @@ const ParkList = () => {
   return (
     <div className="park-list-container">
       <div className="park-list">
-        <h2>공원 목록</h2>
-        <p>지도를 움직여 공원을 확인하세요!</p>
-        <DropDown districts={districts} onSelect={handleDistrictSelect} />
-        <div>
+        <div className="park-list-header">
+          <h2>공원 목록</h2>
+          <p>지도를 움직여서 공원의 위치를 확인하세요!</p>
+          <DropDown districts={districts} onSelect={handleDistrictSelect} />
+        </div>
+        <div className="park-list-cards">
           {filteredParks.map((park) => (
-            <ParkCard key={park.id} name={park.name} />
+            <ParkCard key={park.id} park={park} />
           ))}
         </div>
       </div>
