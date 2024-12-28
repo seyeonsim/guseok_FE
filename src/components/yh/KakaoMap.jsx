@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import "../../styles/yh/KakaoMap.css";
 
-const KakaoMap = ({ parks, center }) => {
+const KakaoMap = ({ parks, center, height }) => {
   useEffect(() => {
     const kakaoApiKey = process.env.REACT_APP_KAKAO_MAP_APP_KEY;
 
@@ -54,7 +55,9 @@ const KakaoMap = ({ parks, center }) => {
     };
   }, [parks, center]);
 
-  return <div id="map" style={{ width: "100%", height: "500px" }} />;
+  return (
+    <div id="map"/>
+  );
 };
 
 export default KakaoMap;
