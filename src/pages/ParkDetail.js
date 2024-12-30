@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // ID를 URL에서 가져옴
-import "../../styles/yh/ParkDetail.css";
+import "../styles/ParkDetail.css";
 
 const ParkDetail = () => {
   const { id } = useParams(); // URL의 :id 파라미터 가져오기
