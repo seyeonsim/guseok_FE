@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import DropDown from "../../components/yh/DropDown";
-import ParkCard from "../../components/yh/ParkCard";
-import KakaoMap from "../../components/yh/KakaoMap";
-import "../../styles/yh/ParkList.css";
+import DropDown from "../components/DropDown";
+import ParkCard from "../components/ParkCard";
+import KakaoMap from "../components/KakaoMap";
+import "../styles/ParkList.css";
 
 const ParkList = () => {
   const [parks, setParks] = useState([]);

@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import CulturalEvent from "./pages/CulturalEvent";
 import React from "react";
-import ParkList from "./pages/yh/ParkList";
-import ParkDetail from "./pages/yh/ParkDetail";
+import ParkList from "./pages/ParkList";
+import ParkDetail from "./pages/ParkDetail";
 
 const App = () => {
   return (

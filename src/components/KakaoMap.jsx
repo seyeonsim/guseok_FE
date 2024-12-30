@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../../styles/yh/KakaoMap.css";
+import "../styles/KakaoMap.css";
 
 const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
   useEffect(() => {

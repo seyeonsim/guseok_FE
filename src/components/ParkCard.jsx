@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/yh/ParkCard.css";
+import "../styles/ParkCard.css";
 
 const ParkCard = ({ park }) => {
   const navigate = useNavigate(); // React Router의 navigate 함수 사용
