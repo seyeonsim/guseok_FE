@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function Map({event}) {
+function Map({event, districtCoordinates}) {
   const mapRef = useRef(null);
   
   useEffect(() => {
@@ -8,8 +8,8 @@ function Map({event}) {
     if (window.kakao && window.kakao.maps) {
       const container = mapRef.current; // 지도 컨테이너
       const options = {
-        center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 초기 위치
-        level: 70, // 지도 확대 수준
+        center: new window.kakao.maps.LatLng(districtCoordinates.lat, districtCoordinates.lot), // 초기 위치
+        level: 8, // 지도 확대 수준
       };
 
       // 지도를 생성
@@ -25,7 +25,7 @@ function Map({event}) {
         marker.setMap(map); // 지도에 마커 추가
       });
     }
-  }, [event]); // `event`가 변경될 때마다 지도 및 마커를 갱신
+  }, [event, districtCoordinates]);
 
     return (
         <>
