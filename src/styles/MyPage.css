@@ -1,0 +1,110 @@
+.mypage-container {
+    width: 60%;
+    margin: 50px auto;
+    background-color: #f9fafc;
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'NanumSquareNeoBold';
+  }
+  
+  .mypage-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    border-bottom: 2.5px solid #6178df;
+    font-family: 'NanumSquareNeoHeavy';
+    margin-bottom: 40px;
+    padding-left: 10px;
+    padding-bottom: 15px;
+  }
+
+  .mypage-title h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: hsl(0, 0%, 32%);
+    font-family: 'NanumSquareNeoHeavy';
+  }
+
+  .mypage-title .modify-btn {
+    font-size: 0.9rem; /* 버튼 크기 조정 */
+    padding: 5px 10px; /* 버튼 패딩 */
+    margin-bottom: 10px;
+    margin-right: 10px;
+    background-color: #6178df; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0;
+    float: right;
+  }
+  
+  .mypage-title .modify-btn:hover {
+    background-color: #4a5eb3; /* 호버 시 색상 변경 */
+}
+
+  .mypage-content {
+    display: flex;
+    flex-direction: column;
+    padding: 90px 0;
+    gap: 30px;
+    align-items: center; /*수정필요*/
+  }
+  
+  .mypage-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .mypage-item {
+    flex: 1;
+    display: flex;
+    margin: 0 15px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .mypage-item label {
+    font-weight: 600;
+    width: 100px; /* 라벨 고정 너비 */
+    margin-bottom: 10px;
+    color: #555;
+    margin-right: 10px;
+    text-align: left;
+  }
+  
+  .mypage-item input {
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+  }
+
+  .mypage-item select {
+    width: 173px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+  }
+  
+  .mypage-item input:read-only,
+  .mypage-item select:disabled {
+    background-color: #f3f4f6;
+  }
+  
