@@ -15,6 +15,7 @@ function Header() {
                     <li><Link to="/cultural">문화 시설</Link></li>
                     <li><Link to="/park">공원 정보</Link></li>
                     <li><Link to="/smoking">흡연 시설</Link></li>
+                    <li><Link to="/trash">분리 수거</Link></li>
                     <li><Link to="/mypage">마이 페이지</Link></li>
                 </ul>
             </nav>
