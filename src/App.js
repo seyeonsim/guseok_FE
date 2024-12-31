@@ -1,42 +1,27 @@
-import './App.css';
-import React from 'react';
-import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import CulturalEvent from "./pages/CulturalEvent";
+import React from "react";
+import ParkList from "./pages/ParkList";
+import ParkDetail from "./pages/ParkDetail";
 import SmokingArea from './pages/SmokingArea';
 import TrashShedule from './pages/TrashShedule';
 
-function Header() {
+const App = () => {
   return (
-    <header className="header">
-        <Router>
-          <nav>
-            <Link to="/">메인 화면</Link>
-            <Link to="/smoking">흡연 구역</Link>
-            <Link to="/trash">쓰레기 배출일</Link>
-          </nav>
-          <Routes>
-            <Route path="/smoking" element={<SmokingArea />} />
-            <Route path="/" element={<Main />} />
-            <Route path="/trash" element={<TrashShedule />} />
-          </Routes>
-        </Router>
-      </header>
-  )
-}
-
-function Main() {
-  return (
-    <div>
-      구석구석 홈페이지 입니다
-    </div>
-  )
-}
-
-function App() {
-  return (
-    <div className="App">
+    <>
+    <BrowserRouter>
       <Header />
-    </div>
+      <Routes>
+        <Route path="/cultural" element={<CulturalEvent />}/>
+        <Route path="/park" element={<ParkList />}/>
+        <Route path="/park/:id" element={<ParkDetail />} />
+        <Route path="/smoking" element={<SmokingArea />} />
+        <Route path="/trash" element={<TrashShedule />} />
+      </Routes>
+    </BrowserRouter>
+    </>
   );
-}
+};
 
 export default App;

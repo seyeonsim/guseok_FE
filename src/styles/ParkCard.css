@@ -1,0 +1,47 @@
+.park-card {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.park-image img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.park-details {
+  padding: 16px;
+  flex: 1;
+}
+
+.park-name {
+  font-size: 20px;
+  margin: 0 0 8px;
+  font-weight: bold;
+}
+
+.park-address,
+.park-phone {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+  color: #555;
+}
+
+.icon-map,
+.icon-phone {
+  margin-right: 8px;
+  color: #007BFF;
+}
+
+.park-info {
+  color: #777;
+  margin-top: 8px;
+  font-size: 14px;
+}
