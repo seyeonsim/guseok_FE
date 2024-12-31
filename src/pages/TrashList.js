@@ -39,7 +39,7 @@ function TrashList({trashSchedules, district}) {
                     ))
                 ) : (
                     <tr>
-                      <td colSpan="3">No smoking areas found.</td>
+                      <td colSpan="3">No TrashSchedule found.</td>
                     </tr>
                 )}
             </tbody>
