@@ -20,6 +20,17 @@ const KakaoMap = ({ smokingAreas, selectedDistrict }) => {
     const script = document.createElement("script");
     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoApiKey}&autoload=false&libraries=services`;
     script.async = true;
+
+    script.onload = () => {
+      if (window.kakao && window.kakao.maps) {
+          const geocoder = new window.kakao.maps.services.Geocoder();
+          console.log("Geocoder 객체 생성 성공:", geocoder);
+          // Geocoder 사용 코드
+      } else {
+          console.error("Kakao Maps API 로드 실패");
+      }
+  };
+
     document.head.appendChild(script);
 
     script.onload = () => {
@@ -46,26 +57,30 @@ const KakaoMap = ({ smokingAreas, selectedDistrict }) => {
   }, [isLoaded]);
 
   useEffect(() => {
+    //마커 제거 함수
     const removeAllMarkers = () => {
       console.log("Removing all markers...");
       markers.forEach((marker) => marker.setMap(null));
       setMarkers([]);
     };
 
+    //최초 로드 시 마커 생성 및 쿼터 방지
     if (isFirstLoad && selectedDistrict === "default") {
       console.log("Skipping marker creation on first load.");
       setIsFirstLoad(false); // 초기 로드 상태를 해제
       return;
     }
 
+    //전체구 선택 시 마커 초기화(api 쿼터 초과 방지)
     if(selectedDistrict === "default" || !map) {
       removeAllMarkers();
       return;
     }
     
+    //최로 로드x 전체구x 흡연 구역이 존재할 때
     if (smokingAreas.length > 0 && !isFirstLoad && selectedDistrict !== "default") {
       console.log("Marker is updated!");
-      const geocoder = new window.kakao.maps.services.Geocoder();
+      // const geocoder = new window.kakao.maps.services.Geocoder();
 
       // 기존 마커 제거
       removeAllMarkers();
@@ -80,6 +95,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict }) => {
         )
         .then((response) => {
           if (response.data.documents.length > 0) {
+            //리스트의 가장 첫번째 장소로 지도 중심을 이동
             const firstLocation = response.data.documents[0];
             const center = new window.kakao.maps.LatLng(
               firstLocation.y,
@@ -91,7 +107,8 @@ const KakaoMap = ({ smokingAreas, selectedDistrict }) => {
         .catch((error) =>
           console.error("Error fetching coordinates for first location:", error)
         );
-
+      
+      //현재 마커 윈도우 제거
       let currentInfoWindow = null;
 
       // 마커 생성
