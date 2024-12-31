@@ -1,12 +1,17 @@
 import React from 'react';
 import '../styles/SmokingArea.css';
 
-function SmokingList({smokingAreas}) {
+function SmokingList({smokingAreas, onListClick}) {
     return(
       <div className="smoking-areas">
           {smokingAreas.length > 0 ? (
               smokingAreas.map((area, index) => (
-                  <div key={index} className="facility-card">
+                  <div 
+                    key={index}
+                    className="facility-card"
+                    onClick={() => onListClick(index)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <p>📍 {area.address} {area.detail}</p>
                     <p>🚩 {area.open}</p>
                   </div>

@@ -6,6 +6,7 @@ import ParkList from "./pages/ParkList";
 import ParkDetail from "./pages/ParkDetail";
 import SmokingArea from './pages/SmokingArea';
 import TrashShedule from './pages/TrashShedule';
+import MyPage from './pages/MyPage';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/park/:id" element={<ParkDetail />} />
         <Route path="/smoking" element={<SmokingArea />} />
         <Route path="/trash" element={<TrashShedule />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
     </>

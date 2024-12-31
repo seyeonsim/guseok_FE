@@ -9,6 +9,7 @@ function SmokingArea() {
     var [districts, setDistricts] = useState([]);
     var [smokingAreas, setSmokingAreas] = useState([]);
     var [selectedDistrict, setselectedDistrict] = useState("default");
+    const [selectedIndex, setSelectedIndex] = useState(null);
 
     //초기 데이터
     useEffect(()=>{
@@ -42,6 +43,11 @@ function SmokingArea() {
         .catch((error) => console.error('Error resetting data:', error));
     };
 
+    const handleListClick = (index) => {
+      setSelectedIndex(index); // 선택된 인덱스 업데이트
+    };
+  
+
     return (
       <div className="container">
         <SmokingNav 
@@ -52,10 +58,11 @@ function SmokingArea() {
             onReset={handleReset} 
         />
         <div className="maincontent">
-          <SmokingList smokingAreas={smokingAreas} />
+          <SmokingList smokingAreas={smokingAreas} onListClick={handleListClick} />
           <KakaoMap
             smokingAreas={smokingAreas}
-            selectedDistrict={selectedDistrict} 
+            selectedDistrict={selectedDistrict}
+            selectedIndex={selectedIndex}
         />
         </div>
       </div>
