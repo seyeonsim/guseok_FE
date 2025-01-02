@@ -45,6 +45,22 @@
   gap: 10px;
 }
 
+.mypage-btn {
+  padding: 8px 15px;
+  font-size: 14px;
+  border: 1px solid #007bff;
+  background-color: #fff;
+  color: #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mypage-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
 .login-btn, .signup-btn {
   padding: 8px 15px;
   font-size: 14px;
