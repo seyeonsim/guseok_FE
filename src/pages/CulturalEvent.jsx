@@ -8,7 +8,7 @@ function CulturalEvent() {
     const [districts, setDistricts] = useState([]);
     const [event, setEvent] = useState([]);
     const [districtCoordinates, setDistrictCoordinates] = useState({ lat: 37.5637, lot: 126.9976 }); // 중구 기본값
-
+    const [selectedEvent, setSelectedEvent] = useState({});
 
     const getDistricts = async () => {
         try {
@@ -37,8 +37,11 @@ function CulturalEvent() {
 
     useEffect(() => {
         getEventList();
-        getDistricts();
     }, [district]);
+
+    useEffect(() => {
+        getDistricts();
+    }, []);
 
     const handleDistrictChange = (e) => {
         // console.log(e.target.value);
@@ -56,12 +59,19 @@ function CulturalEvent() {
 
     };
 
+    const handleListClick = (eventData) => {
+        setSelectedEvent(eventData); 
+    };
+    
+    const handleMarkerClick = (eventData) => {
+        setSelectedEvent(eventData);
+    }
 
     return (
         <>
         <h1>Cultural Event</h1>
         <h2>서울특별시 {district}</h2>
-        <select name="" id="" onChange={handleDistrictChange}>
+        <select name="" id="" value={district} onChange={handleDistrictChange}>
             <option value="">- 자치구 변경 -</option>
             {districts.map((item) => (
                 <option key={item.id} value={item.name} >
@@ -70,8 +80,15 @@ function CulturalEvent() {
             ))}
         </select>
         <div style={{display: "flex"}}>
-            <List event={event} />
-            <Map event={event} districtCoordinates={districtCoordinates}/>
+            <List event={event} 
+            selectedEvent={selectedEvent}
+            onListClick={handleListClick}
+            />
+            <Map event={event} 
+            districtCoordinates={districtCoordinates}
+            selectedEvent={selectedEvent}
+            onMarkerClick={handleMarkerClick}
+            />
         </div>
         </>
     );
