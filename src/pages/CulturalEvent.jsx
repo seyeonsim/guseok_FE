@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Map from "../components/sy/Map";
 import axios from "axios";
 import List from "../components/sy/List";
+import { getEventList } from "../api/districtApi";
 
 function CulturalEvent() {
     const [district, setDistrict] = useState("중구");
@@ -20,23 +21,8 @@ function CulturalEvent() {
         }
       };
 
-    const getEventList = async () => {
-        try {
-            const response = await axios.get(process.env.REACT_APP_BACKSERVER + '/event', {
-                params: { district }
-            });
-    
-            console.log(response.data);
-            setEvent(response.data);
-
-        } catch(error) {
-            console.log(error)
-        }
-
-    };
-
     useEffect(() => {
-        getEventList();
+        getEventList(district, setEvent);
     }, [district]);
 
     useEffect(() => {
@@ -44,7 +30,6 @@ function CulturalEvent() {
     }, []);
 
     const handleDistrictChange = (e) => {
-        // console.log(e.target.value);
         const selectedDistrict = e.target.value;
         setDistrict(selectedDistrict);
 
@@ -56,7 +41,6 @@ function CulturalEvent() {
                 lot: districtData.lot
             });
         }
-
     };
 
     const handleListClick = (eventData) => {
@@ -80,14 +64,21 @@ function CulturalEvent() {
             ))}
         </select>
         <div style={{display: "flex"}}>
-            <List event={event} 
-            selectedEvent={selectedEvent}
-            onListClick={handleListClick}
-            />
-            <Map event={event} 
-            districtCoordinates={districtCoordinates}
-            selectedEvent={selectedEvent}
-            onMarkerClick={handleMarkerClick}
+            <div style={{ overflowY: "auto", height: "70vh" }}>
+                {event.map((item) => (
+                    <List 
+                        key={item.no} 
+                        eventData={item} 
+                        selectedEvent={selectedEvent} 
+                        onListClick={handleListClick} 
+                    />
+                ))}
+            </div>
+            <Map 
+                event={event} 
+                districtCoordinates={districtCoordinates} 
+                selectedEvent={selectedEvent} 
+                onMarkerClick={handleMarkerClick} 
             />
         </div>
         </>
