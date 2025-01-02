@@ -1,0 +1,60 @@
+/* signup-container 클래스 스타일 */
+body.signup-page {
+  background-color: #f8faff; /* 연한 파란색 */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 가로 방향 중앙 정렬 */
+  align-items: center; /* 세로 방향 중앙 정렬 */
+  height: 100vh; /* 화면 전체 높이 */
+}
+
+/* 회원가입 컨테이너 */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px; /* 기존보다 1.5배로 확장 */
+  padding: 45px; /* 기존보다 padding 확장 */
+  background-color: white;
+  border-radius: 20px; /* 모서리 더 둥글게 */
+}
+
+/* 제목 스타일 */
+.signup-container h1 {
+  text-align: center;
+  font-size: 36px; /* 폰트 크기 1.5배로 확장 */
+  font-weight: bold;
+  margin-bottom: 30px; /* 간격 확대 */
+}
+
+/* 입력 필드 및 셀렉트 박스 */
+.signup-container input,
+.signup-container select {
+  width: 100%;
+  padding: 15px; /* 입력 필드 크기 확대 */
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* 둥글기 증가 */
+  font-size: 16px; /* 글자 크기 확대 */
+}
+
+/* 버튼 스타일 */
+.signup-container button {
+  background-color: #4169e1; /* 파란색 */
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 16px; /* 버튼 크기 확대 */
+  font-size: 18px; /* 글자 크기 확대 */
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-container button:hover {
+  background-color: #315ac4; /* hover 시 색상 */
+}
