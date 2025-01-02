@@ -10,11 +10,17 @@ function Header() {
                 <img src={logoImage} alt="Aurora Logo" className="logo-image" />
             </div>
             <nav className="nav">
-                <ul>
+                <ul className="menu">
                     <li><Link to="/main">메인 화면</Link></li>
                     <li><Link to="/cultural">문화 시설</Link></li>
                     <li><Link to="/park">공원 정보</Link></li>
-                    <li><Link to="/smoking">흡연 시설</Link></li>
+                    <li className="dropdown">
+                        <span>흡연/금연 구역</span>
+                        <ul className="dropdown-menu">
+                            <li><Link to="/smoking">흡연 구역</Link></li>
+                            <li><Link to="/nosmoking">금연 구역</Link></li>
+                        </ul>
+                    </li>
                     <li><Link to="/trash">분리 수거</Link></li>
                     <li><Link to="/mypage">마이 페이지</Link></li>
                 </ul>

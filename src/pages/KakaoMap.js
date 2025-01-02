@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex }) => {
+const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoordinates }) => {
   const [isLoaded, setIsLoaded] = useState(false); // Kakao API 로드 상태
   const [map, setMap] = useState(null); // 지도 객체
   const [markers, setMarkers] = useState([]); // 마커 객체 배열
   const [isFirstLoad, setIsFirstLoad] = useState(true); // 초기 로드 상태 추가
   const [currentInfoWindow, setCurrentInfoWindow] = useState(null); // 현재 열린 InfoWindow 추적
+  const [currentMarker, setCurrentMarker] = useState(null);
 
   const kakaoApiKey = process.env.REACT_APP_KAKAO_JS;
   const kakaoRestkey = process.env.REACT_APP_KAKAO_REST;
@@ -41,7 +42,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex }) => {
     return () => {
       document.head.removeChild(script);
     };
-  }, []);
+  }, [kakaoApiKey]);
 
   useEffect(() => {
     if (isLoaded && window.kakao && window.kakao.maps) {
@@ -57,7 +58,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex }) => {
     }
   }, [isLoaded]);
 
-  useEffect(() => {
+  useEffect(() => {if(transformCoordinates) {
     //마커 제거 함수
     const removeAllMarkers = () => {
       if (currentInfoWindow) {
@@ -169,10 +170,12 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex }) => {
       };
       createMarkers(); //마커 생성
     }
+    }
   }, [map, smokingAreas, selectedDistrict]);
 
+  //리스트 클릭 시 지도 중심 이동 및 마커 인포 윈도우 표시
   useEffect(() => {
-    if (selectedIndex !== null && markers.length > selectedIndex && selectedDistrict !== "default") {
+    if (selectedIndex !== null && markers.length > selectedIndex && selectedDistrict !== "default"&& transformCoordinates) {
       const selectedMarker = markers[selectedIndex];
       if (selectedMarker) {
         const position = selectedMarker.getPosition();
@@ -180,6 +183,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex }) => {
 
         if (currentInfoWindow) {
           currentInfoWindow.close();
+          setCurrentInfoWindow(null);
         }
   
         // InfoWindow 표시
@@ -188,7 +192,39 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex }) => {
         });
         infoWindow.open(map, selectedMarker);
 
+        if (currentInfoWindow !== infoWindow) {
+          setCurrentInfoWindow(infoWindow);
+        }
+      }
+    } else if(!transformCoordinates && selectedIndex !== null && selectedDistrict !== "default") {
+      //latitude, longitude
+      const selectedArea = smokingAreas[selectedIndex];
+      console.log("위도 :", selectedArea.latitude, "경도 :", selectedArea.longitude)
+
+      const position = new window.kakao.maps.LatLng(selectedArea.latitude, selectedArea.longitude);
+      map.setCenter(position); // 지도 중심 이동
+
+      const marker = new window.kakao.maps.Marker({
+        position, // 마커 위치
+        map,      // 마커가 추가될 지도 객체
+      });
+
+      // InfoWindow 표시
+      const infoWindow = new window.kakao.maps.InfoWindow({
+        content: `<div style="padding:5px; white-space:nowrap; overflow:hidden;">${selectedArea.address}</div>`,
+      });
+
+      if (currentInfoWindow !== infoWindow) {
+        if(currentInfoWindow) {
+          currentInfoWindow.close();
+        }
+
+        infoWindow.open(map, marker);
         setCurrentInfoWindow(infoWindow);
+      }
+
+      if (currentMarker !== marker) {
+        setCurrentMarker(marker);
       }
     }
   }, [selectedIndex, markers, map, smokingAreas]);
