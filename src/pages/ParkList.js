@@ -13,8 +13,19 @@ const ParkList = () => {
 
   // useEffect로 데이터 fetch
   useEffect(() => {
-    fetch("http://localhost:8080/park")
-      .then((response) => response.json())
+    fetch("http://localhost:8080/park", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // 세션 쿠키 포함 (CORS 설정 필요)
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         // 공원 데이터를 이름 기준으로 가나다 순 정렬
         const sortedParks = data.sort((a, b) => a.name.localeCompare(b.name, "ko"));

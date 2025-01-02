@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/SmokingArea.css';
-import KakaoMap from './KakaoMap';
-import SmokingList from '../components/SmokingList';
+import NoSmokingList from '../components/NoSmokingList';
 import SmokingNav from '../components/SmokingNav';
+import KakaoMap from './KakaoMap';
 
 function SmokingArea() {
     var [districts, setDistricts] = useState([]);
-    var [smokingAreas, setSmokingAreas] = useState([]);
+    var [nosmokingAreas, setnosmokingAreas] = useState([]);
     var [selectedDistrict, setselectedDistrict] = useState("default");
     const [selectedIndex, setSelectedIndex] = useState(null);
 
     //초기 데이터
     useEffect(()=>{
-          axios.get(`/api/smoking/`)
+          axios.get(`/api/nosmoking/`)
             .then((response) => {
               setDistricts(response.data.districts); // 중복 제거된 districts
-              setSmokingAreas(response.data.smokingAreas); // 모든 흡연 구역
+              setnosmokingAreas(response.data.noSmokingAreas); // 모든 흡연 구역
             })
             .catch((error) => console.error('Error fetching districts:', error));
       }, []);
 
     //지역 클릭 시
     var handleDistrictChange = (district) => {
-      setSmokingAreas([]); // 이전 데이터를 초기화하여 혼동 방지
+      setnosmokingAreas([]); // 이전 데이터를 초기화하여 혼동 방지
       setselectedDistrict(district); // 상태 업데이트
-        axios.get(`/api/smoking/district?districts=${district}`)
+        axios.get(`/api/nosmoking/district?districts=${district}`)
             .then((response)=> {
-                setSmokingAreas(response.data.smokingAreas); //자치구에 해당되는 구역 업데이트
+                setnosmokingAreas(response.data.noSmokingAreas); //자치구에 해당되는 구역 업데이트
             })
             .catch((error)=>console.error('Error fetching filtered district data:', error));
     };
@@ -35,12 +35,12 @@ function SmokingArea() {
     //초기화 버튼
     const handleReset = () => {
       setselectedDistrict("default"); // 선택된 구역 초기화
-      setSmokingAreas([]); // 현재 데이터를 지우고 초기 상태로 돌아갈 준비
+      setnosmokingAreas([]); // 현재 데이터를 지우고 초기 상태로 돌아갈 준비
 
       axios
-        .get('/api/smoking/') // 리셋 엔드포인트 호출 (필요 시)
+        .get(`/api/nosmoking/`) // 리셋 엔드포인트 호출 (필요 시)
         .then((response) => {
-          setSmokingAreas(response.data.smokingAreas);
+          setnosmokingAreas(response.data.noSmokingAreas);
         })
         .catch((error) => console.error('Error resetting data:', error));
     };
@@ -49,24 +49,23 @@ function SmokingArea() {
     const handleListClick = (index) => {
       setSelectedIndex(index); // 선택된 인덱스 업데이트
     };
-  
 
     return (
       <div className="container">
         <SmokingNav 
-            Title={"흡연 구역"}
+            Title={"금연 구역"}
             districts={districts}
             selectedDistrict={selectedDistrict}
             onDistrictChange={handleDistrictChange}
             onReset={handleReset} 
         />
         <div className="maincontent">
-          <SmokingList smokingAreas={smokingAreas} onListClick={handleListClick} />
+          <NoSmokingList nosmokingAreas={nosmokingAreas} onListClick={handleListClick} />
           <KakaoMap
-            smokingAreas={smokingAreas}
+            smokingAreas={nosmokingAreas}
             selectedDistrict={selectedDistrict}
             selectedIndex={selectedIndex}
-            transformCoordinates={true}
+            transformCoordinates={false}
           />
         </div>
       </div>
