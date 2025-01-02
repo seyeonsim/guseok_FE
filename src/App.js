@@ -10,6 +10,7 @@ import SmokingArea from './pages/SmokingArea';
 import NoSmokingArea from './pages/NoSmokingArea';
 import TrashShedule from './pages/TrashShedule';
 import MyPage from './pages/MyPage';
+import MainPage from "./pages/MainPage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState( // 로그인 상태 관리
@@ -34,6 +35,7 @@ const App = () => {
     <BrowserRouter>
       <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
+        <Route path="/" element={<MainPage />}/>
         <Route path="/cultural" element={<CulturalEvent />}/>
         <Route path="/park" element={<ParkList />}/>
         <Route path="/park/:id" element={<ParkDetail />} />
