@@ -25,6 +25,9 @@ function Login({ onLogin }) {
         if (response.status === 200) {
             const data = response.data;
             if (data.token) {
+                // 토큰을 로컬 스토리지에 저장
+                localStorage.setItem("token", data.token);
+
                 alert("로그인 되었습니다.");
                 onLogin(data.token); // 토큰 처리
                 navigate("/main"); // 로그인 성공 시 이동
