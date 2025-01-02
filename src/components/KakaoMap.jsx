@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import "../styles/KakaoMap.css";
 
-const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
+const KakaoMap = ({ parks, center, onMarkerClick }) => {
   useEffect(() => {
+
     const kakaoApiKey = process.env.REACT_APP_KAKAO_MAP_APP_KEY;
 
     if (!kakaoApiKey) {
@@ -23,7 +24,7 @@ const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
       const container = document.getElementById("map");
       const options = {
         center: new window.kakao.maps.LatLng(center.lat, center.lng),
-        level: 3,
+        level: 7,
       };
 
       const map = new window.kakao.maps.Map(container, options);
