@@ -8,9 +8,9 @@ const ParkList = () => {
   const [parks, setParks] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [filteredParks, setFilteredParks] = useState([]);
-  const [center, setCenter] = useState({ lat: 37.5665, lng: 126.9780 }); // 초기값: 서울시청
-  const [selectedDistrict, setSelectedDistrict] = useState("전체 지역"); // 선택된 지역 상태
-  const [selectedPark, setSelectedPark] = useState(null); // 현재 선택된 공원 상태
+  const [center, setCenter] = useState({ lat: 37.5665, lng: 126.9780 });
+  const [selectedDistrict, setSelectedDistrict] = useState("전체 지역");
+  const [selectedPark, setSelectedPark] = useState(null);
 
   // useEffect로 데이터 fetch
   useEffect(() => {
@@ -29,7 +29,8 @@ const ParkList = () => {
       })
       .then((data) => {
         // 공원 데이터를 이름 기준으로 가나다 순 정렬
-        const sortedParks = data.sort((a, b) => a.name.localeCompare(b.name, "ko"));
+        const sortedParks = data.sort((a, b) => 
+        a.name.localeCompare(b.name, "ko"));
         setParks(sortedParks); // 모든 공원 데이터 설정
         setFilteredParks(sortedParks); // 초기값으로 전체 공원 설정
 
@@ -42,9 +43,17 @@ const ParkList = () => {
       .catch((error) => console.error("Error fetching parks:", error));
   }, []); // 빈 배열로 설정 -> 컴포넌트 마운트 시 한 번 실행
 
+  useEffect(() => {
+    if (selectedDistrict === "전체 지역") {
+      setFilteredParks(parks);
+    } else {
+      const filtered = parks.filter((park) => park.district === selectedDistrict);
+      setFilteredParks(filtered);
+    }
+  }, [parks, selectedDistrict]);
+
   const handleDistrictSelect = (district) => {
     setSelectedDistrict(district); // 선택된 지역 상태 업데이트
-    setFilteredParks(null); // 공원 목록 초기화
 
     if (district === "전체 지역") {
       setFilteredParks(parks);
@@ -54,6 +63,8 @@ const ParkList = () => {
       setFilteredParks(filtered);
       if (filtered.length > 0) {
         setCenter({ lat: filtered[0].latitude, lng: filtered[0].longitude });
+      } else {
+        setCenter({ lat: 37.5665, lng: 126.9780 }); // 공원이 없을 경우 기본값 설정
       }
     }
   };
@@ -62,7 +73,11 @@ const ParkList = () => {
     if (selectedPark && selectedPark.id === park.id) {
       // 동일한 마커를 다시 클릭하면 초기화
       setSelectedPark(null);
-      setFilteredParks(parks.filter((p) => selectedDistrict === "전체 지역" || p.district === selectedDistrict));
+      const updatedParks =
+        selectedDistrict === "전체 지역"
+          ? parks
+          : parks.filter((p) => p.district === selectedDistrict);
+      setFilteredParks(updatedParks);
     } else {
       setSelectedPark(park);
       setFilteredParks([park]);
