@@ -2,6 +2,9 @@ import React from 'react';
 import '../styles/TrashSchedule.css';
 
 function TrashList({trashSchedules, district}) {
+    // detail 필드가 하나라도 존재하는지 확인
+    const hasDetail = trashSchedules.some(item => item.detail !== null);
+
     return (
     <div className="trash-areas">
         <h2>{district === "default" ? "전체구" : district} 배출일 정보</h2>
@@ -10,7 +13,7 @@ function TrashList({trashSchedules, district}) {
             <thead>
               <tr>
                 {district === "default" ? <th>자치구</th> : null}
-                <th>구분</th>
+                {hasDetail ? <th>구분</th> : null}
                 <th>생활 쓰레기 배출일</th>
                 <th>음식물 쓰레기 배출일</th>
                 <th>폐비닐 배출일</th>
@@ -24,7 +27,7 @@ function TrashList({trashSchedules, district}) {
                     trashSchedules.map((item, index) => (
                         <tr key={index}>
                             {district === "default" ? <td>{item.district}</td> : null}
-                            <td>{item.detail}</td>
+                            {hasDetail ? <td>{item.detail}</td> : null}
                             <td>{item.household}</td>
                             <td>{item.foodGarbage}</td>
                             <td>{item.plastic}</td>

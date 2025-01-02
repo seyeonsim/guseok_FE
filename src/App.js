@@ -7,6 +7,7 @@ import CulturalEvent from "./pages/CulturalEvent";
 import ParkList from "./pages/ParkList";
 import ParkDetail from "./pages/ParkDetail";
 import SmokingArea from './pages/SmokingArea';
+import NoSmokingArea from './pages/NoSmokingArea';
 import TrashShedule from './pages/TrashShedule';
 import MyPage from './pages/MyPage';
 
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/smoking" element={<SmokingArea />} />
+        <Route path="/nosmoking" element={<NoSmokingArea />} />
         <Route path="/trash" element={<TrashShedule />} />
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
