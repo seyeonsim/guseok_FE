@@ -1,0 +1,56 @@
+/* 로그인 페이지의 전체 컨테이너 */
+.login-page {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8faff;
+  font-family: Arial, sans-serif;
+}
+
+/* 로그인 컨테이너 */
+.login-container {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  padding: 30px;
+  text-align: center;
+}
+
+/* 제목 스타일 */
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 입력 필드 */
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* 버튼 스타일 */
+.login-button {
+  background-color: #4169e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #315ac4;
+}

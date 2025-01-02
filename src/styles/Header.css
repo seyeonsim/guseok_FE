@@ -68,7 +68,82 @@
   background-color: #fff;
   color: #007bff;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: pointer;/* 헤더 영역 */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Arial', sans-serif;
+    position: fixed; /* 헤더를 상단에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 헤더를 화면 전체 너비로 확장 */
+    z-index: 1000; /* 다른 콘텐츠 위에 표시 */
+  }
+  
+  /* 헤더 로고 */
+  .logo-image {
+    height: 50px; /* 원하는 높이 설정 */
+    width: auto;  /* 비율 유지 */
+  }
+  
+  /* 내비게이션 스타일 */
+  .nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav li {
+    margin: 0 15px;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+  }
+  
+  .nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* 로그인/회원가입 버튼 */
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .login-btn, .signup-btn, .mypage-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: 1px solid #007bff;
+    background-color: #fff;
+    color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .login-btn:hover, .signup-btn:hover, .mypage-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* 메인 콘텐츠 영역 */
+  .main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* 헤더 높이를 제외한 영역 */
+    margin-top: 80px; /* 헤더 높이만큼 여백 추가 */
+    padding: 20px;
+  }
+  
   transition: all 0.3s ease;
 }
 
