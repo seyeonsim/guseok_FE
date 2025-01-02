@@ -60,7 +60,7 @@ function MyPage () {
   const onUpdateClick = async () => {
     try {
       const response = await apiClient.post('/mypage/update', formData);
-      setMessage("User updated Succesfully!");
+      setMessage("회원 정보가 수정되었습니다");
       setIsEdit(false);
 
       const updatedData = await apiClient.get('/mypage/');
@@ -68,7 +68,7 @@ function MyPage () {
 
       setShowModal(true);
     } catch (error) {
-      setMessage("Failed to update user information");
+      setMessage("회원 정보 수정이 실패하였습니다");
     }
   }
 
@@ -118,7 +118,13 @@ function MyPage () {
           <div className="mypage-row">
             <div className="mypage-item">
               <label>생년월일</label>
-              <input type="text" name="birth" value={formData.birth} onChange={handleChange} readOnly={!isEdit} />
+              <input type="text" name="birth" 
+                value={formData.birth}
+                onChange={handleChange} 
+                readOnly={!isEdit}
+                placeholder="YYYY-MM-DD"
+                maxLength="10"
+              />
             </div>
             <div className="mypage-item">
               <label>주소</label>
