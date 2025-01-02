@@ -33,6 +33,8 @@ const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
         zIndex: 1, // z-index 설정
       });
 
+      let activeInfoWindow = null;
+
       // 마커 추가
       parks.forEach((park) => {
         const position = new window.kakao.maps.LatLng(park.latitude, park.longitude);
@@ -40,8 +42,6 @@ const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
           position,
           map,
         });
-
-      let activeInfoWindow = null; // 활성화된 InfoWindow 저장
 
       window.kakao.maps.event.addListener(marker, "click", () => {
         if (activeInfoWindow) {

@@ -9,7 +9,8 @@ const ParkList = () => {
   const [districts, setDistricts] = useState([]);
   const [filteredParks, setFilteredParks] = useState([]);
   const [center, setCenter] = useState({ lat: 37.5665, lng: 126.9780 }); // 초기값: 서울시청
-  const [selectedDistrict, setSelectedDistrict] = useState(""); // 선택된 지역 상태
+  const [selectedDistrict, setSelectedDistrict] = useState("전체 지역"); // 선택된 지역 상태
+  const [selectedPark, setSelectedPark] = useState(null); // 현재 선택된 공원 상태
 
   // useEffect로 데이터 fetch
   useEffect(() => {
@@ -36,7 +37,6 @@ const ParkList = () => {
         const uniqueDistricts = [...new Set(data.map((park) => park.district))]
           .filter((district) => district)
           .sort((a, b) => a.localeCompare(b, "ko"));
-
         setDistricts(uniqueDistricts); // 지역 리스트 설정
       })
       .catch((error) => console.error("Error fetching parks:", error));
@@ -44,13 +44,14 @@ const ParkList = () => {
 
   const handleDistrictSelect = (district) => {
     setSelectedDistrict(district); // 선택된 지역 상태 업데이트
-    setFilteredParks(parks); // 공원 목록 초기화
+    setFilteredParks(null); // 공원 목록 초기화
 
-    if (district !== "") {
+    if (district === "전체 지역") {
       setFilteredParks(parks);
+      setCenter({ lat: 37.5665, lng: 126.9780 }); // 서울시청 좌표로 초기화
+    } else {
       const filtered = parks.filter((park) => park.district === district);
       setFilteredParks(filtered);
-  
       if (filtered.length > 0) {
         setCenter({ lat: filtered[0].latitude, lng: filtered[0].longitude });
       }
@@ -58,9 +59,15 @@ const ParkList = () => {
   };
 
   const handleMarkerClick = (park) => {
-    setFilteredParks([park]); // 클릭된 공원만 필터링
-    setCenter({ lat: park.latitude, lng: park.longitude }); // 클릭된 공원의 중심으로 이동
-    setSelectedDistrict(""); // 드롭다운 상태를 "전체 지역"으로 초기화
+    if (selectedPark && selectedPark.id === park.id) {
+      // 동일한 마커를 다시 클릭하면 초기화
+      setSelectedPark(null);
+      setFilteredParks(parks.filter((p) => selectedDistrict === "전체 지역" || p.district === selectedDistrict));
+    } else {
+      setSelectedPark(park);
+      setFilteredParks([park]);
+      setCenter({ lat: park.latitude, lng: park.longitude });
+    }
   };
 
   return (
