@@ -1,0 +1,146 @@
+.maincontent {
+    display: flex;
+    padding: 10px;
+}
+.map {
+    float: right;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+@font-face {
+    font-family: 'NanumSquareNeoBold';
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.eot);
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.eot?#iefix) format("embedded-opentype"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.woff) format("woff"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: 'NanumSquareNeoHeavy';
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-eHv.eot);
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-eHv.eot?#iefix) format("embedded-opentype"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-eHv.woff) format("woff"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-eHv.ttf) format("truetype");
+}
+
+/* */
+.smoking-areas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    max-height: 600px;
+    overflow-y: auto; /* 세로 스크롤 활성화 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+  }
+  
+.table-header {
+position: sticky;
+top: 0;
+background: white;
+z-index: 10;
+width: 95%;
+text-align: left;
+border-bottom: 1px solid #ddd;
+}
+
+.facility-card {
+display: flex;
+align-items: left;
+gap: 0 10px;
+border-radius: 8px;
+padding: 0 10px;
+margin: 5px 0;
+width: 90%;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+flex-direction: column;
+justify-content: center;
+font-size: 15px;
+font-family: 'NanumSquareNeoBold';
+}
+
+.facility-card p {
+    margin: 5px; /* 기본 여백 제거 */
+    padding: 2px 5px; /* 내부 여백 제거 */
+}
+/* */
+
+@font-face {
+    font-family: 'Gyeonggi_Batang_Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 30px 10px 30px;
+    align-items: left;
+    width:570px;
+    max-height:500px;
+    font-family: 'Gyeonggi_Batang_Regular';
+}
+
+.select-list {
+    display: flex;
+    align-items: right;
+
+}
+
+.nav-left {
+    float: left;
+    border: 0 1px 0 1px #ccc;
+}
+
+.nav-right button{
+    float: right;
+    padding: 4px 8px;
+    background-color: white;
+    border: 1px solid #ccc;
+    margin-left: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#district {
+    -webkit-appearance: none; /* Webkit 브라우저 (Chrome, Safari) */
+    -moz-appearance: none;    /* Firefox */
+    appearance: none;         /* 기타 브라우저 */
+    background-color: #fff;   /* 드롭다운 배경색 */
+    border: 1px solid gainsboro;   /* 테두리 */
+    border-radius: 5px;       /* 둥근 모서리 */
+    padding: 6px 8px;        /* 내부 여백 */
+    font-size: 14px;          /* 글꼴 크기 */
+    cursor: pointer;          /* 마우스 포인터 */
+    text-align: center;
+}
+
+/* 화살표 제거로 인해 드롭다운 높이가 달라질 수 있으므로 기본 크기 지정 */
+#district:focus {
+    outline: none;
+}
+
+#district option:hover {
+    background-color: #f4f4f4; /* 옵션에 마우스를 올렸을 때 배경색 */
+}
+
+.nav-right button:hover {
+    background-color: #eaeaea; /* 호버 시 버튼 색상 */
+}
+
+.smoking-list::-webkit-scrollbar, .smoking-areas::-webkit-scrollbar{
+    width: 10px;
+}
+  
+.smoking-list::-webkit-scrollbar-thumb ,.smoking-areas::-webkit-scrollbar-thumb{
+    background: rgb(195, 205, 248);
+    border-radius: 10px;
+}
+
+#trash-list::-webkit-scrollbar{
+    width: 10px;
+}
+
+#trash-list::-webkit-scrollbar-thumb {
+    background: rgb(195, 205, 248);
+    border-radius: 10px;
+}

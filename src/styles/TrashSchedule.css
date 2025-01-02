@@ -1,0 +1,70 @@
+.trash-areas{
+    float: left;
+    margin-left: 20px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.trash-areas h2 {
+    text-align: left;
+}
+
+.trash-list {
+    display: flex;
+    width: 90%;
+    max-height: 600px;
+    table-layout: fixed;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow-x: auto; /* 가로 스크롤 */
+    overflow-y: auto; /* 세로 스크롤 */
+    box-sizing: border-box;
+}
+.trash-list table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+}
+.trash-list th, .trash-list td {
+    flex: 1 1 auto;
+    border-bottom:1px solid gainsboro;
+    border-right:1px solid gainsboro;
+    padding: 8px;
+    text-align: center;
+    overflow-x: hidden; /* 내용 잘림 방지 */
+    font-family: 'NanumSquareNeoHeavy';
+}
+.trash-list thead {
+    background-color: #f4f4f4;
+    position: sticky; /* 헤더 고정 */
+    top: 0; /* 헤더를 테이블 상단에 고정 */
+    z-index: 2; /* 다른 요소 위에 표시 */
+}
+.trash-list td {
+    font-family: 'NanumSquareNeoBold';
+    /* text-align: left; */
+}
+.trash-list tr:last-child td {
+    border-bottom: none;
+}
+.trash-list tr td:last-child,
+.trash-list tr th:last-child {
+    border-right: none;
+}
+
+.trash-list th{
+    min-width: 8ch;
+}
+
+.trash-list th:last-child {
+    min-width: 10ch;
+}
+
+#district::-webkit-scrollbar{
+    width: 10px;
+}
+
+#district::-webkit-scrollbar-thumb {
+    background: rgb(195, 205, 248);
+    border-radius: 10px;
+}
