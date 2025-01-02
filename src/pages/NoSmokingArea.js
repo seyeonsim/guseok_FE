@@ -13,7 +13,7 @@ function SmokingArea() {
 
     //초기 데이터
     useEffect(()=>{
-          axios.get(`/api/nosmoking/`)
+          axios.get(process.env.REACT_APP_BACKSERVER+ '/nosmoking/')
             .then((response) => {
               setDistricts(response.data.districts); // 중복 제거된 districts
               setnosmokingAreas(response.data.noSmokingAreas); // 모든 흡연 구역
@@ -25,7 +25,7 @@ function SmokingArea() {
     var handleDistrictChange = (district) => {
       setnosmokingAreas([]); // 이전 데이터를 초기화하여 혼동 방지
       setselectedDistrict(district); // 상태 업데이트
-        axios.get(`/api/nosmoking/district?districts=${district}`)
+        axios.get(process.env.REACT_APP_BACKSERVER+ `/nosmoking/district?districts=${encodeURIComponent(district)}`)
             .then((response)=> {
                 setnosmokingAreas(response.data.noSmokingAreas); //자치구에 해당되는 구역 업데이트
             })
@@ -38,7 +38,7 @@ function SmokingArea() {
       setnosmokingAreas([]); // 현재 데이터를 지우고 초기 상태로 돌아갈 준비
 
       axios
-        .get(`/api/nosmoking/`) // 리셋 엔드포인트 호출 (필요 시)
+        .get(process.env.REACT_APP_BACKSERVER+'/nosmoking/') // 리셋 엔드포인트 호출 (필요 시)
         .then((response) => {
           setnosmokingAreas(response.data.noSmokingAreas);
         })
