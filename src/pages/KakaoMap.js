@@ -12,6 +12,16 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
   const kakaoApiKey = process.env.REACT_APP_KAKAO_JS;
   const kakaoRestkey = process.env.REACT_APP_KAKAO_REST;
 
+  if(transformCoordinates) {
+    // 지도를 클릭했을 때 InfoWindow 닫기
+    window.kakao.maps.event.addListener(map, 'click', () => {
+      if (currentInfoWindow) {
+          currentInfoWindow.close();
+          setCurrentInfoWindow(null);
+      }
+    });
+  }
+
   useEffect(() => {
 
     if (!kakaoApiKey) {
@@ -54,6 +64,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
         };
         const newMap = new window.kakao.maps.Map(container, options);
         setMap(newMap);
+        
       });
     }
   }, [isLoaded]);
@@ -72,7 +83,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
     };
 
     //최초 로드 시 마커 생성 및 쿼터 방지
-    if (isFirstLoad && selectedDistrict === "default") {
+    if (isFirstLoad) {
       console.log("Skipping marker creation on first load.");
       setIsFirstLoad(false); // 초기 로드 상태를 해제
       return;
@@ -138,7 +149,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
                 });
 
                 const infoWindow = new window.kakao.maps.InfoWindow({
-                  content: `<div style="padding:5px;">${area.address}</div>`,
+                  content: `<div style="padding:5px; white-space:nowrap; overflow:hidden;">${area.address}</div>`,
                 });
 
                 // 마커 클릭 이벤트
@@ -158,14 +169,6 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
             }
           }
         }
-
-        // 지도를 클릭했을 때 InfoWindow 닫기
-        window.kakao.maps.event.addListener(map, 'click', () => {
-          if (currentInfoWindow) {
-              currentInfoWindow.close();
-              setCurrentInfoWindow(null);
-          }
-        });
         setMarkers(newMarkers); // 마커 업데이트
       };
       createMarkers(); //마커 생성
@@ -188,7 +191,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
   
         // InfoWindow 표시
         const infoWindow = new window.kakao.maps.InfoWindow({
-          content: `<div style="padding:5px;">${smokingAreas[selectedIndex].address}</div>`,
+          content: `<div style="padding:5px; white-space:nowrap; overflow:hidden;">${smokingAreas[selectedIndex].address}</div>`,
         });
         infoWindow.open(map, selectedMarker);
 
