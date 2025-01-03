@@ -19,7 +19,7 @@ const App = () => {
     () => JSON.parse(localStorage.getItem("isLoggedIn")) || false
   );
 
-  const [region, setRegion] = useState(null);
+  const [region, setRegion] = useState("중구");
 
   const SearchRegion = () => {
       const fetchData = async () => {
@@ -48,7 +48,7 @@ const App = () => {
 
   const handleLogout = () => {
     setIsLoggedIn(false); // 로그인 상태를 false로 변경
-    console.log({region});
+    setRegion("중구");
     localStorage.removeItem("token"); //토큰 삭제
     window.location.href = '/login';
   };
