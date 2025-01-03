@@ -5,15 +5,24 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
 }
+.signup-div-container{
+  height: 100vh; /* 화면 전체 높이 */
+  display: flex; /* Flexbox 활성화 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  overflow: auto; /* 스크롤 가능하도록 설정 */
+}
 
 /* 회원가입 컨테이너 */
 .signup-container {
-  
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
   width: 400px; /* 컨테이너 너비 */
   padding: 30px; /* 내부 여백 */
+  position: relative; /* 스크롤 컨테이너에 맞춤 */
+  max-height: 90vh; /* 화면 높이의 90%로 제한 */
+  overflow-y: auto; /* 세로 스크롤 활성화 */
 }
 
 /* 제목 스타일 */
@@ -41,6 +50,14 @@ body {
   border-radius: 8px; /* 모서리를 둥글게 */
   font-size: 14px; /* 폰트 크기 */
   box-sizing: border-box; /* 박스 크기 포함 */
+}
+
+/* 버튼을 감싸는 컨테이너 */
+.button-wrapper {
+  display: flex; /* Flexbox 활성화 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  height: 100%; /* 필요 시 부모 요소 높이를 설정 */
 }
 
 /* 버튼 스타일 */
