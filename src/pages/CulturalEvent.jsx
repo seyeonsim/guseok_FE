@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Map from "../components/sy/Map";
+import Map from "../components/culturalEvent/Map";
 import axios from "axios";
-import List from "../components/sy/List";
+import List from "../components/culturalEvent/List";
 import { getEventList } from "../api/districtApi";
 
 function CulturalEvent() {

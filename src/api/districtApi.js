@@ -17,7 +17,7 @@ export const getEventList = async (district, setEvent, limit = null) => {
 
 export const getParkList = async (district, setPark, limit) => {
     try {
-        const response = await axios.get("http://localhost:8080" + '/park/list', {
+        const response = await axios.get(process.env.REACT_APP_BACKSERVER + '/park/list', {
             params: { district, limit }
         });
 

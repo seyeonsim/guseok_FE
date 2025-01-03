@@ -26,7 +26,7 @@ function Header({ isLoggedIn, onLogout }) {
             </div>
             <nav className="nav">
                 <ul className="menu">
-                    <li><Link to="/main">메인 화면</Link></li>
+                    <li><Link to="/">메인 화면</Link></li>
                     <li><Link to="/cultural">문화 시설</Link></li>
                     <li><Link to="/park">공원 정보</Link></li>
                     <li><Link to="/smoking">흡연 시설</Link></li>

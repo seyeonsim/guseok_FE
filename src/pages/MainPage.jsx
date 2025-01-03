@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getEventList, getParkList } from "../api/districtApi";
-import MainEventCard from "../components/MainEventCard";
-import MainParkCard from "../components/MainParkCard";
+import MainEventCard from "../components/mainPage/MainEventCard";
+import MainParkCard from "../components/mainPage/MainParkCard";
 import { Link } from "react-router-dom";
+import Carousel from "../components/mainPage/Carousel";
 
 function MainPage() {
     const [district, setDistrict] = useState("중구");
@@ -14,9 +15,9 @@ function MainPage() {
         getParkList(district, setPark, 4);
     }, []);
     return ( <>
-    <div>
-        여기는 캐러셀
-    </div>
+        <Carousel />
+    
+
     <Link to={'/cultural'}>
         <p>문화행사 {'>'} </p>
     </Link>
