@@ -53,7 +53,8 @@ function Signup() {
 };
 
 return (
-  <div className="signup-container">
+  <div className="signup-div-container">
+    <div className="signup-container">
     <h1 className="signup-title">회원가입</h1>
     <form className="signup-form" onSubmit={handleSubmit}>
       <div className="form-group">
@@ -118,7 +119,7 @@ return (
         <label htmlFor="district">자치구</label>
         <select
           name="district"
-          id="district"
+          id="districts"
           value={formData.district}
           onChange={handleChange}>
           <option value="">자치구를 선택하세요</option>
@@ -129,10 +130,13 @@ return (
           ))}
         </select>
       </div>
-      <button type="submit" className="signup-button">
-        회원가입
-      </button>
+      <div className="button-wrapper">
+        <button type="submit" className="signup-button">
+          회원가입
+        </button>
+      </div>
     </form>
+  </div>
   </div>
 );
 }

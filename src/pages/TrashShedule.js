@@ -5,19 +5,26 @@ import SmokingNav from '../components/SmokingNav';
 import TrashList from '../components/TrashList';
 import apiClient from '../components/apiClient';
 
-function TrashShedule() {
+function TrashShedule({region}) {
     const [districts, setDistricts] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState("default");
+    const [selectedDistrict, setSelectedDistrict] = useState(region? region : "default");
     const [schedule, setSchedule] = useState([]);
 
-    useEffect(() => {
-        apiClient.get('/trash/')
-        .then((response) => {
-            setDistricts(response.data.districts);
-            setSchedule(response.data.trashSchedules);
-        })
-        .catch(error=>console.error('Error fetching districts:', error));
-    }, []);
+    const fetchTrashSchedule = async () => {
+        try {
+            const response = await apiClient.get('/trash/')
+            const fetchedDistricts = response.data.districts;
+            setDistricts(fetchedDistricts);
+
+            if(fetchedDistricts.includes(selectedDistrict)) {
+                handleDistrictChange(selectedDistrict);
+            } else {
+                setSchedule(response.data.trashSchedules);
+            }
+        } catch (error) {
+            console.error('Error fetching districts: ', error);
+        }
+    };
 
     const handleDistrictChange = (district) => {
         setSchedule([]);
@@ -40,6 +47,11 @@ function TrashShedule() {
           })
           .catch((error) => console.error('Error resetting data:', error));
       };
+
+    // 초기 데이터 로드
+    useEffect(() => {
+    fetchTrashSchedule();
+    }, [region]); // region 의존성 추가
 
     return(
         <div className="container">

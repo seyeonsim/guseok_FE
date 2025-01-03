@@ -18,6 +18,10 @@
   width: 400px;
   padding: 30px;
   text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* 제목 스타일 */
@@ -53,4 +57,9 @@
 
 .login-button:hover {
   background-color: #315ac4;
+}
+
+.form-group label {
+  float: left;
+  margin: 0 0 10px 5px;
 }

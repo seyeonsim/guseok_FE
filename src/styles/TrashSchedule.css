@@ -24,6 +24,7 @@
     width: 100%;
     table-layout: auto;
     border-collapse: collapse;
+    background: white;
 }
 .trash-list th, .trash-list td {
     flex: 1 1 auto;
