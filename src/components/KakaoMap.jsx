@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import "../styles/KakaoMap.css";
 
-const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
+const KakaoMap = ({ parks, center, onMarkerClick }) => {
   useEffect(() => {
+
     const kakaoApiKey = process.env.REACT_APP_KAKAO_MAP_APP_KEY;
 
     if (!kakaoApiKey) {
@@ -23,7 +24,7 @@ const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
       const container = document.getElementById("map");
       const options = {
         center: new window.kakao.maps.LatLng(center.lat, center.lng),
-        level: 3,
+        level: 7,
       };
 
       const map = new window.kakao.maps.Map(container, options);
@@ -33,6 +34,8 @@ const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
         zIndex: 1, // z-index 설정
       });
 
+      let activeInfoWindow = null;
+
       // 마커 추가
       parks.forEach((park) => {
         const position = new window.kakao.maps.LatLng(park.latitude, park.longitude);
@@ -40,8 +43,6 @@ const KakaoMap = ({ parks, center, height, onMarkerClick }) => {
           position,
           map,
         });
-
-      let activeInfoWindow = null; // 활성화된 InfoWindow 저장
 
       window.kakao.maps.event.addListener(marker, "click", () => {
         if (activeInfoWindow) {

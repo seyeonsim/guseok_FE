@@ -22,6 +22,9 @@ function Signup() {
     "종로구", "중구", "중랑구"
   ];
 
+  const genders = ["남성", "여성"];
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -98,11 +101,18 @@ return (
       </div>
       <div className="form-group">
         <label htmlFor="gender">성별</label>
-        <select name="gender" id="gender" value={formData.gender} onChange={handleChange}>
-          <option value="">선택하세요</option>
-          <option value="Male">남성</option>
-          <option value="Female">여성</option>
-        </select>
+        <select
+          name="gender"
+          id="gender" 
+          value={formData.gender} 
+          onChange={handleChange}>
+          <option value="">성별을 선택하세요</option>
+          {genders.map((gender, index) => (
+            <option key={index} value={gender}>
+              {gender}
+            </option>
+          ))}
+          </select>
       </div>
       <div className="form-group">
         <label htmlFor="district">자치구</label>
@@ -110,9 +120,7 @@ return (
           name="district"
           id="district"
           value={formData.district}
-          onChange={handleChange}
-          required
-        >
+          onChange={handleChange}>
           <option value="">자치구를 선택하세요</option>
           {districts.map((district, index) => (
             <option key={index} value={district}>

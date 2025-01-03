@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../styles/SmokingArea.css';
 import SmokingNav from '../components/SmokingNav';
 import TrashList from '../components/TrashList';
+import apiClient from '../components/apiClient';
 
 function TrashShedule() {
     const [districts, setDistricts] = useState([]);
@@ -10,7 +11,7 @@ function TrashShedule() {
     const [schedule, setSchedule] = useState([]);
 
     useEffect(() => {
-        axios.get(`/api/trash/`)
+        apiClient.get('/trash/')
         .then((response) => {
             setDistricts(response.data.districts);
             setSchedule(response.data.trashSchedules);
@@ -21,7 +22,7 @@ function TrashShedule() {
     const handleDistrictChange = (district) => {
         setSchedule([]);
         setSelectedDistrict(district);
-        axios.get(`/api/trash/district?districts=${district}`)
+        apiClient.get(`/trash/district?districts=${encodeURIComponent(district)}`)
             .then((response) => {
                 setSchedule(response.data.trashSchedules);
             })
@@ -32,8 +33,8 @@ function TrashShedule() {
         setSelectedDistrict("default"); // 선택된 구역 초기화
         setSchedule([]); // 현재 데이터를 지우고 초기 상태로 돌아갈 준비
   
-        axios
-          .get('/api/trash/') // 리셋 엔드포인트 호출 (필요 시)
+        apiClient
+          .get('/trash/') // 리셋 엔드포인트 호출 (필요 시)
           .then((response) => {
             setSchedule(response.data.trashSchedules);
           })

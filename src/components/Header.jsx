@@ -38,7 +38,6 @@ function Header({ isLoggedIn, onLogout }) {
                         </ul>
                     </li>
                     <li><Link to="/trash">분리 수거</Link></li>
-                    <li><Link to="/mypage">마이 페이지</Link></li>
                 </ul>
             </nav>
             <div className="auth-buttons">

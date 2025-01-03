@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 import api from "../api";
 
 function Login({ onLogin }) {
@@ -25,6 +26,9 @@ function Login({ onLogin }) {
         if (response.status === 200) {
             const data = response.data;
             if (data.token) {
+                // 토큰을 로컬 스토리지에 저장
+                localStorage.setItem("token", data.token);
+
                 alert("로그인 되었습니다.");
                 onLogin(data.token); // 토큰 처리
                 navigate("/main"); // 로그인 성공 시 이동
@@ -49,26 +53,37 @@ function Login({ onLogin }) {
 }
 };
 
-  return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+return (
+  <div className="login-container">
+    <h1 className="login-title">로그인</h1>
+    <form className="login-form" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="email">아이디</label>
         <input
           type="email"
-          placeholder="Email"
+          id="email"
+          placeholder="아이디"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+      </div>
+      <div className="form-group">
+        <label htmlFor="password">비밀번호</label>
         <input
           type="password"
-          placeholder="Password"
+          id="password"
+          placeholder="비밀번호"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
+      </div>
+      <button type="submit" className="login-button">
+        로그인
+      </button>
+    </form>
+  </div>
+);
 }
+
 
 export default Login;
