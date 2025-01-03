@@ -43,6 +43,7 @@ border-bottom: 1px solid #ddd;
 
 .facility-card {
 display: flex;
+background: white;
 align-items: left;
 gap: 0 10px;
 border-radius: 8px;

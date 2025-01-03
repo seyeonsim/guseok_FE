@@ -29,7 +29,6 @@ function Header({ isLoggedIn, onLogout }) {
                     <li><Link to="/main">메인 화면</Link></li>
                     <li><Link to="/cultural">문화 시설</Link></li>
                     <li><Link to="/park">공원 정보</Link></li>
-                    <li><Link to="/smoking">흡연 시설</Link></li>
                     <li className="dropdown">
                         <span>흡연/금연 구역</span>
                         <ul className="dropdown-menu">

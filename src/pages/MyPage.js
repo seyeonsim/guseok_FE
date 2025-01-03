@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../styles/MyPage.css';
 import apiClient from '../components/apiClient';
 
-function MyPage () {
+function MyPage ({onRegionChange}) {
   const[isEdit, setIsEdit] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -37,6 +37,10 @@ function MyPage () {
     setFormData({
       ...formData, [name]: value,
     });
+
+    if (name === "district") {
+      onRegionChange(value);
+    }
   };
 
   const handleEditClick = () => {
@@ -127,10 +131,10 @@ function MyPage () {
               />
             </div>
             <div className="mypage-item">
-              <label>주소</label>
+              <label>자치구</label>
               <select name="district" value={formData.district} onChange={handleChange} disabled={!isEdit}>
-                {district.map((item, index) => (
-                  <option key={index} value={item}>
+                {district.map((item) => (
+                  <option key={item.id} value={item.name}>
                     {item.name}
                   </option>
                 ))}
