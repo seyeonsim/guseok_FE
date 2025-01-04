@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/MyPage.css';
-import apiClient from '../api/apiClient';
+import apiClient from '../components/apiClient';
 
 function MyPage ({onRegionChange}) {
   const[isEdit, setIsEdit] = useState(false);
