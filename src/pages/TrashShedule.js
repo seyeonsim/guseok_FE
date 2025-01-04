@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/SmokingArea.css';
-import SmokingNav from '../components/SmokingNav';
-import TrashList from '../components/TrashList';
-import apiClient from '../components/apiClient';
+import SmokingNav from '../components/smoking/SmokingNav';
+import TrashList from '../components/trash/TrashList';
+import apiClient from '../api/apiClient';
 
 function TrashShedule({region}) {
     const [districts, setDistricts] = useState([]);
