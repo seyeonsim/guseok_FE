@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/SmokingArea.css';
-import KakaoMap from '../components/smoking/KakaoMap';
-import SmokingList from '../components/smoking/SmokingList';
-import SmokingNav from '../components/smoking/SmokingNav';
-import apiClient from '../api/apiClient';
+import KakaoMap from './KakaoMap';
+import SmokingList from '../components/SmokingList';
+import SmokingNav from '../components/SmokingNav';
+import apiClient from '../components/apiClient';
 
 function SmokingArea({region}) {
     var [districts, setDistricts] = useState([]);

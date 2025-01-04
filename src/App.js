@@ -11,7 +11,7 @@ import NoSmokingArea from './pages/NoSmokingArea';
 import TrashShedule from './pages/TrashShedule';
 import MyPage from './pages/MyPage';
 import MainPage from "./pages/MainPage";
-import apiClient from "./api/apiClient";
+import apiClient from "./components/apiClient";
 
 
 const App = () => {
