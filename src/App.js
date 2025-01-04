@@ -12,6 +12,7 @@ import TrashShedule from './pages/TrashShedule';
 import MyPage from './pages/MyPage';
 import MainPage from "./pages/MainPage";
 import apiClient from "./api/apiClient";
+import "./styles/new/App.css";
 
 
 const App = () => {

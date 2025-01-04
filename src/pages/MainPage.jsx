@@ -4,6 +4,7 @@ import MainEventCard from "../components/mainPage/MainEventCard";
 import MainParkCard from "../components/mainPage/MainParkCard";
 import { Link } from "react-router-dom";
 import Carousel from "../components/mainPage/Carousel";
+import "../styles/new/MainEventCard.css"
 
 function MainPage() {
     const [district, setDistrict] = useState("중구");
@@ -16,31 +17,37 @@ function MainPage() {
     }, []);
     return ( <>
         <Carousel />
-    
+        
+            <article>
+                <Link to={'/cultural'}>
+                    <p className="article-title">문화행사 {'>'} </p>
+                </Link>
+                <div className="main-event-container">
+                    {event.map((item) => (
+                        <MainEventCard
+                        key={item.no}
+                        eventData={item}
+                        />
+                    ))}
+                </div>
+            </article>
 
-    <Link to={'/cultural'}>
-        <p>문화행사 {'>'} </p>
-    </Link>
-    <div style={{display: "flex"}}>
-        {event.map((item) => (
-            <MainEventCard
-            key={item.no}
-            eventData={item}
-            />
-        ))}
-    </div>
+            <article>
+                <Link to={'/park'}>
+                    <p className="article-title">공원정보 {'>'}</p>
+                </Link>
+                <div className="main-park-container">
+                    {park.map((item) => (
+                        <MainParkCard
+                        key={item.id}
+                        parkData={item}
+                        />
+                    ))}
+                </div>
+            </article>
 
-    <p>공원 {'>'}</p>
-    <div style={{display: "flex"}}>
-        {park.map((item) => (
-            <MainParkCard
-            key={item.id}
-            parkData={item}
-            />
-        ))}
-    </div>
-
-    <p>흡연구역 {'>'}</p>
+            {/* <p>흡연구역 {'>'}</p> */}
+        
 
     </> );
 }
