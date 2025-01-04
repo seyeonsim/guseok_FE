@@ -87,7 +87,7 @@ function Map({ event, districtCoordinates, selectedEvent, onMarkerClick }) {
     <div
       ref={mapRef}
       id="map"
-      style={{ width: 500 + "px", height: 400 + "px" }}
+      style={{ width: "100%", height: "100%" }}
     ></div>
   );
 }

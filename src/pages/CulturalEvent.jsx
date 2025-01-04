@@ -88,18 +88,19 @@ function CulturalEvent() {
 
     return (
         <>
-            <h1>Cultural Event</h1>
-            <h2>서울특별시 {district}</h2>
+        <article>
+            <h1 className="page-title">문화행사</h1>
+            <h2 className="user-district">서울특별시 {district}</h2>
             <select name="" id="" value={district} onChange={handleDistrictChange}>
-                <option value="">- 자치구 변경 -</option>
+                <option value="" disabled>- 자치구 변경 -</option>
                 {districts.map((item) => (
                     <option key={item.id} value={item.name}>
                         {item.name}
                     </option>
                 ))}
             </select>
-            <div style={{ display: "flex" }}>
-                <div style={{ overflowY: "auto", height: "70vh" }}>
+            <div className="event-container">
+                <div className="event-lists" >
                     {event.map((item) => (
                         <List
                             key={item.no}
@@ -110,13 +111,17 @@ function CulturalEvent() {
                         />
                     ))}
                 </div>
-                <Map
-                    event={event}
-                    districtCoordinates={districtCoordinates}
-                    selectedEvent={selectedEvent}
-                    onMarkerClick={handleMarkerClick}
-                />
+
+                <div className="event-map-container">
+                    <Map
+                        event={event}
+                        districtCoordinates={districtCoordinates}
+                        selectedEvent={selectedEvent}
+                        onMarkerClick={handleMarkerClick}
+                    />
+                </div>
             </div>
+        </article>
         </>
     );
 }

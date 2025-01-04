@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import "../../styles/new/List.css"
 
 function List({ eventData, selectedEvent, onListClick, isLiked }) {
     const listRef = useRef(null);
@@ -38,23 +39,26 @@ function List({ eventData, selectedEvent, onListClick, isLiked }) {
     };
 
     return (
-        <div
+        <div className="list-card"
             ref={listRef}
-            style={{
-                display: "flex",
-                padding: "10px",
-                margin: "10px",
-                cursor: "pointer",
-                border: selectedEvent.no === eventData.no ? "2px solid red" : "1px solid #ccc",
+            style={{ 
+                border: selectedEvent.no === eventData.no ? "2px solid blue" : "1px solid #ccc",
             }}
             onClick={() => onListClick(eventData)}
         >
-            <div>
+            <div className="list-img">
                 <img src={eventData.main_img} alt={eventData.title} />
             </div>
-            <div>
+            <div className="list-text">
                 <strong>{eventData.title}</strong>
+                <p>{eventData.event_date}</p>
                 <p>{eventData.place}</p>
+                <p>{eventData.use_trgt}</p>
+                <p>
+                    <a href={eventData.org_link} target="_blank">
+                    상세 페이지
+                    </a>
+                </p>
             </div>
             <div
                 style={{
