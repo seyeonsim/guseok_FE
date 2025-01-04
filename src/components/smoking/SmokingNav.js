@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/SmokingArea.css';
+import '../../styles/SmokingArea.css';
 
 function SmokingNav({Title, districts, selectedDistrict, onDistrictChange, onReset}) {
     return(
