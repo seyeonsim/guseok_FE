@@ -3,6 +3,7 @@ import DropDown from "../components/DropDown";
 import ParkCard from "../components/ParkCard";
 import KakaoMap from "../components/KakaoMap";
 import "../styles/ParkList.css";
+import api from "../api"; // <-- axios 인스턴스 import
 
 const ParkList = () => {
   // ----- 주 상태들 -----
@@ -22,28 +23,21 @@ const ParkList = () => {
   // 1) 사용자 정보 (로그인 유무 + 자치구) 가져오기
   // -----------------------------------------------------------------
   useEffect(() => {
-    fetch("http://localhost:8080/userinfo", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    })
+    // fetch -> axios로 변경
+    api
+      .get("/userinfo") // 백엔드: 인증 필요 경로
       .then((res) => {
-        if (res.ok) return res.json();
-        throw new Error("Not logged in");
-      })
-      .then((data) => {
-        if (data && data.district) {
-          // 사용자 자치구 사용
-          setSelectedDistrict(data.district);
+        // OK
+        if (res.data && res.data.district) {
+          setSelectedDistrict(res.data.district); // 사용자 district
         } else {
-          // 자치구 정보가 없으면 "전체 지역"
           setSelectedDistrict("전체 지역");
         }
         setIsUserLoaded(true);
       })
       .catch((err) => {
+        // 비로그인 or 오류 (403 Forbidden 등)
         console.error(err);
-        // 비로그인
         setSelectedDistrict("전체 지역");
         setIsUserLoaded(true);
       });
@@ -53,16 +47,10 @@ const ParkList = () => {
   // 2) 공원 목록 가져오기
   // -----------------------------------------------------------------
   useEffect(() => {
-    fetch("http://localhost:8080/park", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    })
+    api
+      .get("/park") // 백엔드의 공원 목록 엔드포인트
       .then((res) => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
+        const data = res.data;
         // 이름 한글 정렬
         const sorted = data.sort((a, b) => a.name.localeCompare(b.name, "ko"));
         setParks(sorted);
@@ -75,15 +63,17 @@ const ParkList = () => {
 
         setIsParksLoaded(true);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   // -----------------------------------------------------------------
   // 3) user & parks 모두 로딩 끝난 뒤 → selectedDistrict에 맞춰 필터링
   // -----------------------------------------------------------------
   useEffect(() => {
-    if (!isUserLoaded || !isParksLoaded) return; // 아직 둘 중 하나라도 로드 안 됨
-    if (selectedDistrict === null) return; // 자치구 정보도 아직 모름
+    if (!isUserLoaded || !isParksLoaded) return; // 아직 로딩 중
+    if (selectedDistrict === null) return;       // 자치구 정보가 아직 모름
 
     let newFiltered = [];
 
@@ -103,7 +93,7 @@ const ParkList = () => {
     }
 
     setFilteredParks(newFiltered);
-    setSelectedPark(null); // 구 바뀌면 선택 해제
+    setSelectedPark(null); // 구 바뀔 때마다 선택 해제
   }, [isUserLoaded, isParksLoaded, selectedDistrict, parks]);
 
   // -----------------------------------------------------------------
@@ -135,8 +125,7 @@ const ParkList = () => {
     }
   };
 
-  // 아직 center가 null이 아닌지, 또는 로딩 중 상태표시 할 수도 있음
-  // 여기서는 간단히 로딩은 끝났어도 selectedDistrict가 null이면 대기 중으로 처리
+  // 로딩 중 표시
   if (selectedDistrict === null) {
     return <div>로딩 중...</div>;
   }
