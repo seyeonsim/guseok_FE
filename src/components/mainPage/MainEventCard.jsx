@@ -6,7 +6,7 @@ function MainEventCard({eventData}) {
         </div>
         <div className="card-text">
             <strong className="card-title">{eventData.title}</strong>
-            <p className>{eventData.event_date}</p>
+            <p>{eventData.event_date}</p>
             <p>{eventData.place}</p>
         </div>
     </div>
