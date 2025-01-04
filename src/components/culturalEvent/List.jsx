@@ -1,9 +1,13 @@
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
 
-function List({ eventData, selectedEvent, onListClick }) {
+function List({ eventData, selectedEvent, onListClick, isLiked }) {
     const listRef = useRef(null);
-    const [isLiked, setIsLiked] = useState(false);
+    const [liked, setLiked] = useState(isLiked);
+
+    useEffect(() => {
+        setLiked(isLiked); // 부모로부터 받은 좋아요 상태로 초기화
+    }, [isLiked]);
 
     useEffect(() => {
         if (selectedEvent?.no && selectedEvent.no === eventData.no) {
@@ -11,7 +15,6 @@ function List({ eventData, selectedEvent, onListClick }) {
         }
     }, [selectedEvent, eventData]);
 
-    // 좋아요 토글 함수
     const toggleLike = async () => {
         try {
             const token = localStorage.getItem("token"); // JWT 토큰 가져오기
@@ -27,8 +30,7 @@ function List({ eventData, selectedEvent, onListClick }) {
             );
 
             if (response.status === 200) {
-                // 응답이 성공적이면 상태를 반전시킴
-                setIsLiked(!isLiked);
+                setLiked(!liked); // 좋아요 상태 토글
             }
         } catch (error) {
             console.error("Error toggling like:", error);
@@ -36,14 +38,14 @@ function List({ eventData, selectedEvent, onListClick }) {
     };
 
     return (
-        <div 
+        <div
             ref={listRef}
-            style={{ 
-                display: "flex", 
-                padding: '10px', 
-                margin: '10px', 
-                cursor: 'pointer',
-                border: selectedEvent.no === eventData.no ? '2px solid red' : '1px solid #ccc' 
+            style={{
+                display: "flex",
+                padding: "10px",
+                margin: "10px",
+                cursor: "pointer",
+                border: selectedEvent.no === eventData.no ? "2px solid red" : "1px solid #ccc",
             }}
             onClick={() => onListClick(eventData)}
         >
@@ -54,20 +56,19 @@ function List({ eventData, selectedEvent, onListClick }) {
                 <strong>{eventData.title}</strong>
                 <p>{eventData.place}</p>
             </div>
-            {/* 좋아요 하트 아이콘 */}
-            <div 
+            <div
                 style={{
-                    cursor: 'pointer',
-                    marginLeft: 'auto',
-                    fontSize: '24px',
-                    color: isLiked ? 'red' : 'gray',
+                    cursor: "pointer",
+                    marginLeft: "auto",
+                    fontSize: "24px",
+                    color: liked ? "red" : "gray",
                 }}
                 onClick={(e) => {
                     e.stopPropagation(); // 클릭 이벤트가 리스트 항목에 전달되지 않도록
                     toggleLike(); // 하트 클릭 시 좋아요 상태 토글
                 }}
             >
-                {isLiked ? '❤️' : '🤍'} {/* 하트 아이콘 표시 */}
+                {liked ? "❤️" : "🤍"}
             </div>
         </div>
     );
