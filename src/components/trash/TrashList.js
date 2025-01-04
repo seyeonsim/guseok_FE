@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/TrashSchedule.css';
+import '../../styles/TrashSchedule.css';
 
 function TrashList({trashSchedules, district}) {
     // detail 필드가 하나라도 존재하는지 확인
