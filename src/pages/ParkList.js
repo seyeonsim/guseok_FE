@@ -3,7 +3,7 @@ import DropDown from "../components/park/DropDown";
 import ParkCard from "../components/park/ParkCard";
 import KakaoMap from "../components/park/KakaoMap";
 import "../styles/ParkList.css";
-import api from "../api/api"; // <-- axios 인스턴스 import
+import api from "../api/api";
 
 const ParkList = () => {
   // ----- 주 상태들 -----
@@ -25,7 +25,7 @@ const ParkList = () => {
   useEffect(() => {
     // fetch -> axios로 변경
     api
-      .get("/userinfo") // 백엔드: 인증 필요 경로
+      .get("/api/userinfo") // 백엔드: 인증 필요 경로
       .then((res) => {
         // OK
         if (res.data && res.data.district) {
