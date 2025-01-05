@@ -20,7 +20,7 @@ export const getParkList = async (district, setPark, limit) => {
         const response = await axios.get('http://localhost:8080' + '/park/list', {
             params: { district, limit }
         });
-
+        
         console.log(response.data);
         setPark(response.data);
 
