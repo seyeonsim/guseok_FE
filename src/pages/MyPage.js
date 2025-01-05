@@ -116,13 +116,13 @@ function MyPage ({onRegionChange}) {
             </div>
             <div className="mypage-item">
               <label>전화번호</label>
-              <input type="text" value="010-6448-9160" readOnly />
+              <input type="text" value="02-2088-2792" readOnly />
             </div>
           </div>
           <div className="mypage-row">
             <div className="mypage-item">
               <label>생년월일</label>
-              <input type="text" name="birth" 
+              <input type="date" name="birth" 
                 value={formData.birth}
                 onChange={handleChange} 
                 readOnly={!isEdit}
