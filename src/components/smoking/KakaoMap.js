@@ -8,6 +8,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
   const [isFirstLoad, setIsFirstLoad] = useState(true); // 초기 로드 상태 추가
   const [currentInfoWindow, setCurrentInfoWindow] = useState(null); // 현재 열린 InfoWindow 추적
   const [currentMarker, setCurrentMarker] = useState(null);
+  const [mapLevel, setMapLevel] = useState(3);
 
   const kakaoApiKey = process.env.REACT_APP_KAKAO_JS;
   const kakaoRestkey = process.env.REACT_APP_KAKAO_REST;
@@ -66,7 +67,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
         const container = document.getElementById("map");
         const options = {
           center: new window.kakao.maps.LatLng(37.5665, 126.9780), // 기본 좌표
-          level: 3,
+          level: mapLevel,
         };
         const newMap = new window.kakao.maps.Map(container, options);
         setMap(newMap);
@@ -237,6 +238,14 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
       }
     }
   }, [selectedIndex, markers, map, smokingAreas]);
+
+  if (map) {
+    // 줌 변경 이벤트 등록
+    window.kakao.maps.event.addListener(map, 'zoom_changed', () => {
+      setMapLevel(map.getLevel()); // 현재 줌 레벨 저장
+      console.log("Current Mapl Level is: ", mapLevel);
+    });
+  }
 
   return (
     <div
