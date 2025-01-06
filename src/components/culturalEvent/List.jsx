@@ -50,17 +50,8 @@ function List({ eventData, selectedEvent, onListClick, isLiked }) {
                 <img src={eventData.main_img} alt={eventData.title} />
             </div>
             <div className="list-text">
-                <h3>{eventData.title}</h3>
-                <p>{eventData.event_date}</p>
-                <p>{eventData.place}</p>
-                <p>{eventData.use_trgt}</p>
-                <p>
-                    <a href={eventData.org_link} target="_blank">
-                    상세 페이지
-                    </a>
-                </p>
-            </div>
-            <div
+                <h3>{eventData.title} 
+                <span
                 style={{
                     cursor: "pointer",
                     marginLeft: "auto",
@@ -72,7 +63,18 @@ function List({ eventData, selectedEvent, onListClick, isLiked }) {
                     toggleLike(); // 하트 클릭 시 좋아요 상태 토글
                 }}
             >
-                {liked ? "🩵" : "🤍"}
+                {liked ? " 🩵" : " 🤍"}
+            </span>
+                </h3>
+                
+                <p>{eventData.event_date}</p>
+                <p>{eventData.place}</p>
+                <p>{eventData.use_trgt}</p>
+                <p>
+                    <a href={eventData.org_link} target="_blank">
+                    상세 페이지
+                    </a>
+                </p>
             </div>
         </div>
     );
