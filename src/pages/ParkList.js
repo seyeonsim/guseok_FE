@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // 작성자 : 박유현
 import DropDown from "../components/park/DropDown";
 import ParkCard from "../components/park/ParkCard";
 import KakaoMap from "../components/park/KakaoMap";
