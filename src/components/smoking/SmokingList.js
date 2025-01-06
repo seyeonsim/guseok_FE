@@ -73,7 +73,7 @@ function SmokingList({smokingAreas, onListClick, area, index, id, key}) {
             }}
             onClick={handleToggleLike}
           >
-            {likeStatus ? "❤️" : "🤍"}
+            {likeStatus ? "🩵" : "🤍"}
           </div>
           <p>🚩 {area.open}</p>
         </div>
