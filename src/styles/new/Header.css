@@ -1,9 +1,24 @@
+@font-face {
+    font-family: 'BagelFatOne-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_JAMO@1.0/BagelFatOne-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 header {
     box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     background-color: #ffffff;
     z-index: 10;
+}
+
+.logo > a {
+    text-decoration: none;
+    color: #000;
+    font-size: 3.1rem;
+    /* font-weight: 700; */
+    font-family: 'BagelFatOne-Regular';
 }
 
 .header {
@@ -23,6 +38,12 @@ header {
     list-style: none;
     padding: 1.2rem 1.6rem;
     cursor: pointer;
+    font-weight: 700;
+}
+
+.menu > li > a {
+    text-decoration: none;
+    color: #000;
 }
 
 .dropdown {
@@ -43,6 +64,12 @@ header {
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
     z-index: 1000; /* 다른 요소 위에 표시 */
     white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.dropdown-menu > li > a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 400;
 }
 
 .dropdown:hover .dropdown-menu {

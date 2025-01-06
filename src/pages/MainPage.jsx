@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import Carousel from "../components/mainPage/Carousel";
 import "../styles/new/MainEventCard.css"
 
-function MainPage() {
-    const [district, setDistrict] = useState("중구");
+function MainPage({region}) {
+    const [district, setDistrict] = useState(region);
     const [event, setEvent] = useState([]);
     const [park, setPark] = useState([]);
 
@@ -20,7 +20,7 @@ function MainPage() {
         
             <article>
                 <Link to={'/cultural'}>
-                    <p className="article-title">문화행사 {'>'} </p>
+                    <p className="article-title">서울시 {district} 문화행사 🎭 {'>'} </p>
                 </Link>
                 <div className="main-event-container">
                     {event.map((item) => (
@@ -34,7 +34,7 @@ function MainPage() {
 
             <article>
                 <Link to={'/park'}>
-                    <p className="article-title">공원정보 {'>'}</p>
+                    <p className="article-title">서울시 {district} 공원정보 🌳 {'>'}</p>
                 </Link>
                 <div className="main-park-container">
                     {park.map((item) => (

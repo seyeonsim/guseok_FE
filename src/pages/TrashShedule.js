@@ -54,6 +54,8 @@ function TrashShedule({region}) {
     }, [region]); // region 의존성 추가
 
     return(
+    <article>
+
         <div className="container">
             <SmokingNav 
                 Title={"쓰레기 배출일"}
@@ -69,6 +71,7 @@ function TrashShedule({region}) {
                 />
             </div>
         </div>
+    </article>
     );
 }
 

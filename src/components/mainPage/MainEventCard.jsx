@@ -5,7 +5,7 @@ function MainEventCard({eventData}) {
             <img src={eventData.main_img} alt={eventData.title} />
         </div>
         <div className="card-text">
-            <strong className="card-title">{eventData.title}</strong>
+            <h3 className="card-title">{eventData.title}</h3>
             <p>{eventData.event_date}</p>
             <p>{eventData.place}</p>
         </div>
