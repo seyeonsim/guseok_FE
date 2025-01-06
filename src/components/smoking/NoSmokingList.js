@@ -1,3 +1,5 @@
+//작성자: 윤정연;
+
 import React from 'react';
 // import '../../styles/SmokingArea.css';
 
