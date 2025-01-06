@@ -223,3 +223,17 @@
 .liked-park-cards::-webkit-scrollbar-track {
   background-color: #f0f0f0;
 }
+
+.liked-park-cards .smoking-card {
+  flex: 0 0 300px; /* 카드의 고정 너비 */
+  height: auto;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; /* 내용 가운데 정렬 */
+}

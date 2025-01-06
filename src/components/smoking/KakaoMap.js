@@ -13,8 +13,8 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
   const kakaoApiKey = process.env.REACT_APP_KAKAO_JS;
   const kakaoRestkey = process.env.REACT_APP_KAKAO_REST;
 
+  //지도 클릭, 이동, 확대/축소 시 InfoWindow 닫기
   if (transformCoordinates && map) {
-    // 지도 클릭, 이동, 확대/축소 시 InfoWindow 닫기
     const events = ['click', 'dragend', 'zoom_changed'];
   
     events.forEach((event) => {
@@ -28,7 +28,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
     });
   }
   
-
+  //카카오 맵 api 키 확인 및 geocoder 초기화
   useEffect(() => {
 
     if (!kakaoApiKey) {
@@ -61,6 +61,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
     };
   }, [kakaoApiKey]);
 
+  // 카카오 맵 로드 및 초기화
   useEffect(() => {
     if (isLoaded && window.kakao && window.kakao.maps) {
       window.kakao.maps.load(() => {
@@ -76,6 +77,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
     }
   }, [isLoaded]);
 
+  //smokingList의 주소->좌표 변환, 마커 생성/제거
   useEffect(() => {if(transformCoordinates) {
     //마커 제거 함수
     const removeAllMarkers = () => {
@@ -84,14 +86,12 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
         setCurrentInfoWindow(null);
       }
 
-      //console.log("Removing all markers...");
       markers.forEach((marker) => marker.setMap(null));
       setMarkers([]);
     };
 
     //최초 로드 시 마커 생성 및 쿼터 방지
     if (isFirstLoad) {
-      //console.log("Skipping marker creation on first load.");
       setIsFirstLoad(false); // 초기 로드 상태를 해제
       return;
     }
@@ -104,7 +104,6 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
     
     //최로 로드x 전체구x 흡연 구역이 존재할 때
     if (smokingAreas.length > 0 && !isFirstLoad && selectedDistrict !== "default") {
-      //console.log("Marker is updated!");
 
       // 기존 마커 제거
       removeAllMarkers();
@@ -239,8 +238,8 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
     }
   }, [selectedIndex, markers, map, smokingAreas]);
 
+  // 줌 변경 이벤트 등록
   if (map) {
-    // 줌 변경 이벤트 등록
     window.kakao.maps.event.addListener(map, 'zoom_changed', () => {
       setMapLevel(map.getLevel()); // 현재 줌 레벨 저장
       console.log("Current Mapl Level is: ", mapLevel);

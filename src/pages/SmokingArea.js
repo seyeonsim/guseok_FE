@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from "react-router-dom";
 // import '../styles/SmokingArea.css';
 import KakaoMap from '../components/smoking/KakaoMap';
 import SmokingList from '../components/smoking/SmokingList';
@@ -74,7 +75,24 @@ function SmokingArea({region}) {
             onReset={handleReset} 
         />
         <div className="maincontent">
-          <SmokingList smokingAreas={smokingAreas} onListClick={handleListClick} />
+        <div className="smoking-areas">
+          {smokingAreas.length > 0 ? (
+              smokingAreas.map((area, index) => (
+                <SmokingList 
+                  smokingAreas={smokingAreas} 
+                  onListClick={handleListClick} 
+                  area = {area}
+                  index = {index}
+                  id = {area.id}
+                  key = {area.id}
+                />
+                ))
+              ) : (
+                <div className="facility-info">
+                  <p>No smoking areas found.</p>
+                </div>
+            )}
+        </div>
           <KakaoMap
             smokingAreas={smokingAreas}
             selectedDistrict={selectedDistrict}

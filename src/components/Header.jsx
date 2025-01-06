@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import '../styles/Header.css'; // 스타일링 파일
 import "../styles/new/Header.css";
 
-function Header({ isLoggedIn, onLogout }) {
+function Header({ isLoggedIn, onLogout, region }) {
     const navigate = useNavigate();
 
     const handleLogin = () => {
@@ -49,7 +49,7 @@ function Header({ isLoggedIn, onLogout }) {
                     </ul>
                 </nav>
                 <div className="auth-buttons">
-                    {isLoggedIn ? (
+                    {isLoggedIn && region ? (
                         <>
                         <button className="mypage-btn" onClick={handleMyPage}>
                             마이페이지

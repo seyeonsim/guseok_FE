@@ -16,6 +16,7 @@ function MyPage({ onRegionChange }) {
   const [district, setDistricts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [likedParks, setLikedParks] = useState([]);
+  const [likedSmokingAreas, setLikedSmokingAreas] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +29,9 @@ function MyPage({ onRegionChange }) {
 
         const likedParksResponse = await apiClient.get('/mypage/likedParks');
         setLikedParks(likedParksResponse.data);
+
+        const likedSmokingResponse = await apiClient.get('/mypage/likedSmoking');
+        setLikedSmokingAreas(likedSmokingResponse.data);
       } catch (error) {
         console.error("Failed to fetch user data: ", error);
       }
@@ -134,7 +138,7 @@ function MyPage({ onRegionChange }) {
             <div className="mypage-item">
               <label>생년월일</label>
               <input
-                type="text"
+                type="date"
                 name="birth"
                 value={formData.birth}
                 onChange={handleChange}
@@ -168,6 +172,21 @@ function MyPage({ onRegionChange }) {
           <div className="liked-park-cards">
             {likedParks.map((park) => (
               <ParkCard key={park.id} park={park} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="liked-parks-section">
+        <h3>내가 좋아요한 흡연 구역</h3>
+        {likedParks.length === 0 ? (
+          <p>아직 좋아요한 흡연 구역이 없습니다.</p>
+        ) : (
+          <div className="liked-park-cards">
+            {likedSmokingAreas.map((area) => (
+              <div className="smoking-card" key={area.id}>
+                <p>{area.address}</p>
+              </div>
             ))}
           </div>
         )}
