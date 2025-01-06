@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react"; // 작성자 : 박유현
 // import "../../styles/KakaoMap.css";
 
 import "../../styles/new/List.css";

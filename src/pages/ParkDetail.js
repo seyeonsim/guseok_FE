@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; // 작성자 : 박유현
 import { useParams } from "react-router-dom";
 import axios from "axios"; // ← 좋아요 API 요청용
 import "../styles/ParkDetail.css";

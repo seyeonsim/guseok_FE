@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; // 작성자 : 박유현
 import { useNavigate } from "react-router-dom";
 
 // import "../../styles/ParkCard.css";

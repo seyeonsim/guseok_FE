@@ -1,4 +1,4 @@
-/* 카드 전체 */
+/* 카드 전체 */ /* 작성자 : 박유현 */
 .park-card {
   display: flex; /* 가로로 이미지 + 텍스트 */
   align-items: center; /* 수직 가운데 맞출지 여부 */

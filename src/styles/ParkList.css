@@ -1,4 +1,4 @@
-/* 전체 컨테이너 스타일 */
+/* 전체 컨테이너 스타일 */ /* 작성자 : 박유현 */
 .park-list-container {
   display: flex;
   gap: 20px; /* 목록과 지도 간 간격 */
