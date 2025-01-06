@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+// import "../../styles/ParkCard.css";
+
+import "../../styles/new/List.css";
 import axios from "axios";
-import "../../styles/ParkCard.css";
+
 
 const ParkCard = ({ park }) => {
   const navigate = useNavigate();
@@ -82,6 +86,7 @@ const ParkCard = ({ park }) => {
 
       {/* 우측에 텍스트 영역 */}
       <div className="park-details">
+
         {/* ❶ 공원 이름 + 하트 아이콘을 한 줄에 배치 */}
         <div className="park-title-row">
           <h2 className="park-name">{name}</h2>
@@ -109,7 +114,9 @@ const ParkCard = ({ park }) => {
         </p>
         <p className="park-info">{truncatedInfo || "공원 정보 없음"}</p>
       </div>
-    </div>
+
+      </div>
+
   );
 };
 

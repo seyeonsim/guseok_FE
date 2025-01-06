@@ -1,8 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import '../styles/Header.css'; // 스타일링 파일
- import "../styles/new/Header.css";
-import logoImage from '../images/channels4_profile-Photoroom.png'; // 이미지 경로 수정
+import "../styles/new/Header.css";
 
 function Header({ isLoggedIn, onLogout, region }) {
     const navigate = useNavigate();
@@ -25,7 +24,7 @@ function Header({ isLoggedIn, onLogout, region }) {
             <div className="header">
                 <div className="logo">
                     {/* <img src={logoImage} alt="Aurora Logo" className="logo-image" /> */}
-                    구석구석
+                    <Link to={"/"}>🔍 구석구석</Link>
                 </div>
                 <nav className="nav">
                     <ul className="menu">

@@ -42,7 +42,7 @@ function Map({ event, districtCoordinates, selectedEvent, onMarkerClick }) {
           districtCoordinates.lat,
           districtCoordinates.lot
         ),
-        level: 7,
+        level: 8,
       };
 
       const map = new window.kakao.maps.Map(container, options);

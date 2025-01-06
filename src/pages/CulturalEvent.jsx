@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import Map from "../components/culturalEvent/Map";
 import axios from "axios";
 import List from "../components/culturalEvent/List";
-import { getEventList } from "../api/districtApi";
+import { getEventList, getUserDistrict } from "../api/districtApi";
+
+import "../styles/new/List.css"
 
 function CulturalEvent() {
     const [district, setDistrict] = useState("중구");
@@ -55,6 +57,7 @@ function CulturalEvent() {
 
     useEffect(() => {
         getDistricts();
+        getUserDistrict(setDistrict);
     }, []);
 
     useEffect(() => {

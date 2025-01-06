@@ -1,0 +1,108 @@
+.slide-container {
+    width: 100%;
+    height: 35vh;
+    /* position: relative; */
+}
+
+.swiper {
+    height: 100%; /* Swiper 전체 높이를 부모 컨테이너에 맞춤 */
+}
+
+.swiper-slide {
+    height: 100%; /* 각 슬라이드가 부모 요소의 높이를 상속받음 */
+}
+
+.inner-slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%; /* 슬라이드 내부 요소가 슬라이드 높이를 가득 채우도록 설정 */
+    /* padding: 20px; */
+    padding: 0 20vw;
+    color: #000;
+    /* text-align: center; */
+    /* position: relative; */
+    overflow: hidden;
+}
+
+
+/* 슬라이드 1 배경 */
+.slide-1 {
+    background-color: aliceblue; 
+}
+
+/* 슬라이드 2 배경 */
+.slide-2 {
+    background-color: #defede; 
+}
+
+/* 슬라이드 3 배경 */
+/* .slide-3 {
+    background-color: #fffcd9; 
+} */
+.slide-3 {
+    background-color: #ebe6e4; 
+}
+
+
+.inner-text {
+    max-width: 600px;
+}
+
+.inner-text > h1 {
+    font-size: 3.2rem;
+    line-height: 1.5;
+}
+
+.inner-img {
+    position: relative;
+}
+
+.icon-png {
+    width: 300px;
+    height: auto;
+    position: relative;
+    z-index: 4;
+}
+
+.confetti {
+    position: absolute;
+    top: -180px;
+    left: -260px;
+    z-index: 5; /* 다른 요소 위에 표시되도록 */
+}
+
+.bike > img {
+    position: absolute;
+    width: 150px;
+    top: 130px;
+    left: -80px;
+    z-index: 5;
+}
+
+
+
+
+@keyframes growDiagonal {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+}
+.cloud {
+    position: absolute;
+    bottom: -100px;
+    left: -360px;
+    transform-origin: bottom left; /* 현재 설정: 오른쪽 상단을 향해 커짐 */
+    animation: growDiagonal 4s ease-in-out infinite;
+    animation-fill-mode: forwards;
+    z-index: 1; 
+}
+
+.cloud > img {
+    width: 600px;
+}

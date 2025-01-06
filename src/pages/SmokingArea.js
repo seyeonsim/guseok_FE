@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import '../styles/SmokingArea.css';
+// import '../styles/SmokingArea.css';
 import KakaoMap from '../components/smoking/KakaoMap';
 import SmokingList from '../components/smoking/SmokingList';
 import SmokingNav from '../components/smoking/SmokingNav';

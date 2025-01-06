@@ -31,7 +31,7 @@ function Login({ onLogin }) {
 
                 alert("로그인 되었습니다.");
                 onLogin(data.token); // 토큰 처리
-                navigate("/main"); // 로그인 성공 시 이동
+                navigate("/"); // 로그인 성공 시 이동
             } else {
                 alert("서버에서 적절한 응답이 없습니다.");
             }

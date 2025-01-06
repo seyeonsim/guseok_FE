@@ -7,31 +7,31 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.park-header {
+.park-detail-container > .park-header {
   display: flex;
   justify-content: space-between; /* 양쪽 끝으로 정렬 */
   align-items: center; /* 세로 정렬 */
   margin-bottom: 10px; /* 공원 이름과 버튼 사이 간격 */
 }
 
-.park-name {
+.park-detail-container > .park-name {
   font-size: 24px;
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
 }
 
-.park-content {
+.park-detail-container > .park-content {
   display: flex;
   gap: 20px;
   margin-top: 20px;
 }
 
-.park-images {
+.park-detail-container > .park-images {
   flex: 1;
 }
 
-.park-image,
+.park-detail-container > .park-image,
 .park-map {
   width: auto;
   height: auto;
@@ -42,7 +42,7 @@
   margin-bottom: 20px;
 }
 
-.park-info {
+.park-detail-container > .park-info {
   flex: 1;
   display: flex;
   flex-direction: column;

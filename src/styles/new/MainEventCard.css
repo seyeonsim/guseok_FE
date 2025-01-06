@@ -9,7 +9,9 @@ article > a {
 }
 
 .article-title {
-    font-size: 2.1rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .main-event-container, .main-park-container {
@@ -29,6 +31,7 @@ article > a {
     transition: transform 0.3s ease; /* 마우스 오버 시 트랜지션 효과 */
     padding: 2.5rem;
     border: 0.07rem solid #ccc;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .main-card > a {
@@ -70,6 +73,8 @@ article > a {
     line-clamp: 2; /* 표준 속성으로 텍스트를 2줄로 제한 */
     box-orient: vertical; /* 표준 속성으로 텍스트 방향 설정 */
     overflow: hidden; /* 넘치는 텍스트는 숨기기 */
+    font-weight: 700;
+    font-size: 1.9rem;
 }
 
 

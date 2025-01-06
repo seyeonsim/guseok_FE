@@ -5,7 +5,9 @@ const DropDown = ({ districts, onSelect, value }) => {
     <select
       onChange={(e) => onSelect(e.target.value)}
       value={value} // 선택된 값과 동기화
-      style={{ padding: "10px", marginBottom: "20px" }}
+
+      // 수정
+      // style={{ padding: "10px", marginBottom: "20px" }}
     >
       {districts.map((district, index) => (
         <option key={index} value={district}>

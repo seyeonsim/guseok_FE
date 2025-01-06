@@ -1,10 +1,14 @@
 import React from 'react';
-import '../../styles/SmokingArea.css';
+// import '../../styles/SmokingArea.css';
+
+import "../../styles/new/List.css";
 
 function SmokingNav({Title, districts, selectedDistrict, onDistrictChange, onReset}) {
     return(
       <div className="nav-container">
-        <h2>{Title} 정보</h2>
+        {/* <h2>{Title} 정보</h2> */}
+        <h2>{Title}</h2>
+        
         <div className="select-list">
           {/* <p>구를 선택하세요 </p> */}
           <form className="nav-left">
