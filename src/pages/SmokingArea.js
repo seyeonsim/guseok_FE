@@ -66,7 +66,8 @@ function SmokingArea({region}) {
     }, [region]); // region 의존성 추가
 
     return (
-      <div className="container">
+      <article>
+        <div className="container">
         <SmokingNav 
             Title={"흡연 구역"}
             districts={districts}
@@ -101,6 +102,7 @@ function SmokingArea({region}) {
           />
         </div>
       </div>
+      </article>
     );
   }
 
