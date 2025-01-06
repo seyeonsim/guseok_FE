@@ -25,7 +25,7 @@ function Header({ isLoggedIn, onLogout }) {
             <div className="header">
                 <div className="logo">
                     {/* <img src={logoImage} alt="Aurora Logo" className="logo-image" /> */}
-                    구석구석
+                    <Link to={"/"}>🔍 구석구석</Link>
                 </div>
                 <nav className="nav">
                     <ul className="menu">

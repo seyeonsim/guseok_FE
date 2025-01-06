@@ -42,7 +42,7 @@ function List({ eventData, selectedEvent, onListClick, isLiked }) {
         <div className="list-card"
             ref={listRef}
             style={{ 
-                border: selectedEvent.no === eventData.no ? "2px solid blue" : "1px solid #ccc",
+                border: selectedEvent.no === eventData.no ? "2px solid #a9c3f2" : "1px solid #ccc",
             }}
             onClick={() => onListClick(eventData)}
         >
@@ -50,7 +50,7 @@ function List({ eventData, selectedEvent, onListClick, isLiked }) {
                 <img src={eventData.main_img} alt={eventData.title} />
             </div>
             <div className="list-text">
-                <strong>{eventData.title}</strong>
+                <h3>{eventData.title}</h3>
                 <p>{eventData.event_date}</p>
                 <p>{eventData.place}</p>
                 <p>{eventData.use_trgt}</p>
@@ -72,7 +72,7 @@ function List({ eventData, selectedEvent, onListClick, isLiked }) {
                     toggleLike(); // 하트 클릭 시 좋아요 상태 토글
                 }}
             >
-                {liked ? "❤️" : "🤍"}
+                {liked ? "🩵" : "🤍"}
             </div>
         </div>
     );

@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/ParkCard.css";
+// import "../../styles/ParkCard.css";
+
+import "../../styles/new/List.css";
 
 const ParkCard = ({ park }) => {
   const navigate = useNavigate(); // React Router의 navigate 함수 사용
@@ -23,6 +25,10 @@ const ParkCard = ({ park }) => {
       </div>
       <div className="park-details">
         <h2 className="park-name">{name}</h2>
+
+        {/* {/* 추가 태그 */}
+      <div className="park-text"> 
+
         <p className="park-address">
           <i className="icon-map"></i> {address || "주소 정보 없음"}
         </p>
@@ -31,6 +37,9 @@ const ParkCard = ({ park }) => {
         </p>
         <p className="park-info">{truncatedInfo || "공원 정보 없음"}</p>
       </div>
+
+      </div>
+
     </div>
   );
 };

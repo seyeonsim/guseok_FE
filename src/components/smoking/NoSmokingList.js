@@ -1,5 +1,7 @@
 import React from 'react';
-import '../../styles/SmokingArea.css';
+// import '../../styles/SmokingArea.css';
+
+import "../../styles/new/List.css";
 
 function SmokingList({nosmokingAreas, onListClick}) {
     return(

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import DropDown from "../components/park/DropDown";
 import ParkCard from "../components/park/ParkCard";
 import KakaoMap from "../components/park/KakaoMap";
-import "../styles/ParkList.css";
+// import "../styles/ParkList.css";
 import api from "../api/api"; // <-- axios 인스턴스 import
+
+import "../styles/new/List.css"
 
 const ParkList = () => {
   // ----- 주 상태들 -----
@@ -131,34 +133,55 @@ const ParkList = () => {
   }
 
   return (
-    <div className="park-list-container">
-      <div className="park-list">
-        <div className="park-list-header">
-          <h2>공원 목록</h2>
-          <p>지도를 움직여서 공원의 위치를 확인하세요!</p>
-          <DropDown
-            districts={districts}
-            onSelect={handleDistrictSelect}
-            value={selectedDistrict}
-          />
+    // 추가 태그
+    <article>
+
+      <div className="park-list-container">
+        <div className="park-list">
+          <div className="park-list-header">
+            <h2 className="page-title">공원정보</h2>
+
+            <h2 className="user-district">서울특별시 {selectedDistrict}</h2>
+
+            {/* 수정 */}
+            {/* <p>지도를 움직여서 공원의 위치를 확인하세요!</p> */}
+            <DropDown
+              districts={districts}
+              onSelect={handleDistrictSelect}
+              value={selectedDistrict}
+            />
+          </div>
+
+        {/* 추가 태그 */}
+        <div className="park-container"> 
+          
+          {/* 추가 태그 */}
+          <div className="park-lists">
+
+            <div className="park-list-cards">
+              {displayedParks.map((park) => (
+                <ParkCard key={park.id} park={park} />
+              ))}
+            </div>
+
+          </div>
+
+
+          <div className="map-container">
+            <KakaoMap
+              parks={filteredParks}
+              center={center}
+              selectedPark={selectedPark}
+              onMarkerClick={handleMarkerClick}
+              />
+          </div>
+
         </div>
 
-        <div className="park-list-cards">
-          {displayedParks.map((park) => (
-            <ParkCard key={park.id} park={park} />
-          ))}
         </div>
       </div>
 
-      <div className="map-container">
-        <KakaoMap
-          parks={filteredParks}
-          center={center}
-          selectedPark={selectedPark}
-          onMarkerClick={handleMarkerClick}
-        />
-      </div>
-    </div>
+    </article>
   );
 };
 

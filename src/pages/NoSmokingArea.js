@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/SmokingArea.css';
+// import '../styles/SmokingArea.css';
 import NoSmokingList from '../components/smoking/NoSmokingList';
 import SmokingNav from '../components/smoking/SmokingNav';
 import KakaoMap from '../components/smoking/KakaoMap';
 import apiClient from '../api/apiClient';
+
+import "../styles/new/List.css";
 
 function SmokingArea({region}) {
     var [districts, setDistricts] = useState([]);
@@ -63,6 +65,8 @@ function SmokingArea({region}) {
     }, [region]); // region 의존성 추가
 
     return (
+    <article>
+
       <div className="container">
         <SmokingNav 
             Title={"금연 구역"}
@@ -81,6 +85,7 @@ function SmokingArea({region}) {
           />
         </div>
       </div>
+    </article>
     );
   }
 

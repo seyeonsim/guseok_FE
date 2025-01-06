@@ -7,7 +7,8 @@ function TrashList({trashSchedules, district}) {
 
     return (
     <div className="trash-areas">
-        <h2>{district === "default" ? "전체구" : district} 배출일 정보</h2>
+        {/* <h2>{district === "default" ? "전체구" : district} 배출일 정보</h2> */}
+        <h2>서울특별시 {district === "default" ? "전체구" : district}</h2>
         <div className="trash-list" id="trash-list">
           <table>
             <thead>

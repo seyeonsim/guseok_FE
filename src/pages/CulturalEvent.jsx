@@ -4,8 +4,10 @@ import axios from "axios";
 import List from "../components/culturalEvent/List";
 import { getEventList } from "../api/districtApi";
 
-function CulturalEvent() {
-    const [district, setDistrict] = useState("중구");
+import "../styles/new/List.css"
+
+function CulturalEvent({region}) {
+    const [district, setDistrict] = useState(region);
     const [districts, setDistricts] = useState([]);
     const [event, setEvent] = useState([]);
     const [districtCoordinates, setDistrictCoordinates] = useState({ lat: 37.5637, lot: 126.9976 }); // 중구 기본값
