@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-import { getEventList, getParkList } from "../api/districtApi";
+import { getEventList, getParkList, getUserDistrict } from "../api/districtApi";
 import MainEventCard from "../components/mainPage/MainEventCard";
 import MainParkCard from "../components/mainPage/MainParkCard";
 import { Link } from "react-router-dom";
 import Carousel from "../components/mainPage/Carousel";
 import "../styles/new/MainEventCard.css"
 
-function MainPage({region}) {
-    const [district, setDistrict] = useState(region);
+function MainPage() {
+    const [district, setDistrict] = useState("중구");
     const [event, setEvent] = useState([]);
     const [park, setPark] = useState([]);
 
     useEffect(() => {
+        getUserDistrict(setDistrict);
+    }, []);
+
+    useEffect(() => {
         getEventList(district, setEvent, 4);
         getParkList(district, setPark, 4);
-    }, []);
+    }, [district]);
     return ( <>
         <Carousel />
         

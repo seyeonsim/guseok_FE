@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import Map from "../components/culturalEvent/Map";
 import axios from "axios";
 import List from "../components/culturalEvent/List";
-import { getEventList } from "../api/districtApi";
+import { getEventList, getUserDistrict } from "../api/districtApi";
 
 import "../styles/new/List.css"
 
-function CulturalEvent({region}) {
-    const [district, setDistrict] = useState(region);
+function CulturalEvent() {
+    const [district, setDistrict] = useState("중구");
     const [districts, setDistricts] = useState([]);
     const [event, setEvent] = useState([]);
     const [districtCoordinates, setDistrictCoordinates] = useState({ lat: 37.5637, lot: 126.9976 }); // 중구 기본값
@@ -57,6 +57,7 @@ function CulturalEvent({region}) {
 
     useEffect(() => {
         getDistricts();
+        getUserDistrict(setDistrict);
     }, []);
 
     useEffect(() => {

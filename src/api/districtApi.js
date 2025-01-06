@@ -28,3 +28,26 @@ export const getParkList = async (district, setPark, limit) => {
         console.log(error);
     }
 };
+
+export const getUserDistrict = async (setDistrict) => {
+    const token = localStorage.getItem("token"); 
+    if (!token) {
+        return; 
+    }
+
+    try {
+        const response = await axios.get(process.env.REACT_APP_BACKSERVER + '/userinfo',
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                withCredentials: true
+            }
+        );
+        console.log(response.data.district);
+        setDistrict(response.data.district);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
