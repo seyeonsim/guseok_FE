@@ -11,6 +11,7 @@ article > a {
 .article-title {
     font-size: 2.4rem;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .main-event-container, .main-park-container {
