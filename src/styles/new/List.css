@@ -62,17 +62,17 @@
 }
 
 
-.park-details > h2 {
+.park-title-row > .park-name {
     font-size: 1.9rem
 }
 
 
 
-.list-text > p, .park-text > p {
+.list-text > p, .park-details > p {
     font-size: 1.3rem;
 } 
 
-.park-text > p {
+.park-info {
     display: -webkit-box; /* Webkit 기반 브라우저에서 텍스트가 여러 줄로 표시될 수 있도록 설정 */
     -webkit-line-clamp: 2; /* 텍스트를 2줄로 제한 */
     -webkit-box-orient: vertical; /* 텍스트가 세로로 배치되도록 설정 */

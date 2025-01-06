@@ -59,9 +59,9 @@ const App = () => {
     <BrowserRouter>
       <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<MainPage region={region} />}/>
+        <Route path="/" element={<MainPage />}/>
         <Route path="/main" element={<MainPage />} />
-        <Route path="/cultural" element={<CulturalEvent region={region}/>}/>
+        <Route path="/cultural" element={<CulturalEvent/>}/>
         <Route path="/park" element={<ParkList />}/>
         <Route path="/park/:id" element={<ParkDetail />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
