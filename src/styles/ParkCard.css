@@ -1,5 +1,7 @@
+/* 카드 전체 */
 .park-card {
-  display: flex;
+  display: flex; /* 가로로 이미지 + 텍스트 */
+  align-items: center; /* 수직 가운데 맞출지 여부 */
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -7,41 +9,74 @@
   margin-bottom: 10px;
   background: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* 전체 클릭 가능 */
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 180px; /* 예: 높이 고정 */
+}
+
+.park-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 이미지 영역 */
+.park-image {
+  flex: 4; /* 40% */
+  height: 100%; /* 카드 높이에 맞춤 */
+  overflow: hidden;
 }
 
 .park-image img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  border-right: 1px solid #ddd;
 }
 
+/* 오른쪽 텍스트 영역 */
 .park-details {
-  padding: 16px;
-  flex: 1;
+  flex: 6; /* 60% */
+  padding: 10px 16px; /* 원하는 여백 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* 이름 + 하트를 한 줄에 배치 */
+.park-title-row {
+  display: flex;
+  align-items: center; /* 세로 정렬 */
+  margin-bottom: 8px;
+}
+
+/* 공원명 스타일 */
 .park-name {
-  font-size: 20px;
-  margin: 0 0 8px;
+  font-size: 18px;
   font-weight: bold;
+  color: #007bff;
+  margin: 0; /* 기본 여백 제거 */
 }
 
+/* 하트 아이콘(.like-icon)을 따로 숨기지 않음 => 항상 보이게 */
+
+/* 주소/전화번호/정보 */
 .park-address,
 .park-phone {
+  font-size: 14px;
+  color: #555;
+  margin: 4px 0;
   display: flex;
   align-items: center;
+}
+
+.park-info {
+  font-size: 14px;
+  color: gray;
   margin: 4px 0;
-  color: #555;
 }
 
 .icon-map,
 .icon-phone {
   margin-right: 8px;
-  color: #007BFF;
-}
-
-.park-info {
-  color: #777;
-  margin-top: 8px;
-  font-size: 14px;
+  color: #007bff;
 }

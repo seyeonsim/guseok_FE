@@ -8,24 +8,31 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
   const [isFirstLoad, setIsFirstLoad] = useState(true); // 초기 로드 상태 추가
   const [currentInfoWindow, setCurrentInfoWindow] = useState(null); // 현재 열린 InfoWindow 추적
   const [currentMarker, setCurrentMarker] = useState(null);
+  const [mapLevel, setMapLevel] = useState(3);
 
   const kakaoApiKey = process.env.REACT_APP_KAKAO_JS;
   const kakaoRestkey = process.env.REACT_APP_KAKAO_REST;
 
-  if(transformCoordinates) {
-    // 지도를 클릭했을 때 InfoWindow 닫기
-    window.kakao.maps.event.addListener(map, 'click', () => {
-      if (currentInfoWindow) {
+  if (transformCoordinates && map) {
+    // 지도 클릭, 이동, 확대/축소 시 InfoWindow 닫기
+    const events = ['click', 'dragend', 'zoom_changed'];
+  
+    events.forEach((event) => {
+      window.kakao.maps.event.addListener(map, event, () => {
+        if (currentInfoWindow) {
           currentInfoWindow.close();
+          //console.log(`${event} 이벤트 발생으로 InfoWindow 닫기.`);
           setCurrentInfoWindow(null);
-      }
+        }
+      });
     });
   }
+  
 
   useEffect(() => {
 
     if (!kakaoApiKey) {
-      console.error("Kakao JavaScript API key is missing.");
+      //console.error("Kakao JavaScript API key is missing.");
       return;
     }
 
@@ -60,7 +67,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
         const container = document.getElementById("map");
         const options = {
           center: new window.kakao.maps.LatLng(37.5665, 126.9780), // 기본 좌표
-          level: 3,
+          level: mapLevel,
         };
         const newMap = new window.kakao.maps.Map(container, options);
         setMap(newMap);
@@ -77,14 +84,14 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
         setCurrentInfoWindow(null);
       }
 
-      console.log("Removing all markers...");
+      //console.log("Removing all markers...");
       markers.forEach((marker) => marker.setMap(null));
       setMarkers([]);
     };
 
     //최초 로드 시 마커 생성 및 쿼터 방지
     if (isFirstLoad) {
-      console.log("Skipping marker creation on first load.");
+      //console.log("Skipping marker creation on first load.");
       setIsFirstLoad(false); // 초기 로드 상태를 해제
       return;
     }
@@ -97,7 +104,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
     
     //최로 로드x 전체구x 흡연 구역이 존재할 때
     if (smokingAreas.length > 0 && !isFirstLoad && selectedDistrict !== "default") {
-      console.log("Marker is updated!");
+      //console.log("Marker is updated!");
 
       // 기존 마커 제거
       removeAllMarkers();
@@ -202,7 +209,7 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
     } else if(!transformCoordinates && selectedIndex !== null && selectedDistrict !== "default") {
       //latitude, longitude
       const selectedArea = smokingAreas[selectedIndex];
-      console.log("위도 :", selectedArea.latitude, "경도 :", selectedArea.longitude)
+      //console.log("위도 :", selectedArea.latitude, "경도 :", selectedArea.longitude)
 
       const position = new window.kakao.maps.LatLng(selectedArea.latitude, selectedArea.longitude);
       map.setCenter(position); // 지도 중심 이동
@@ -231,6 +238,14 @@ const KakaoMap = ({ smokingAreas, selectedDistrict, selectedIndex, transformCoor
       }
     }
   }, [selectedIndex, markers, map, smokingAreas]);
+
+  if (map) {
+    // 줌 변경 이벤트 등록
+    window.kakao.maps.event.addListener(map, 'zoom_changed', () => {
+      setMapLevel(map.getLevel()); // 현재 줌 레벨 저장
+      console.log("Current Mapl Level is: ", mapLevel);
+    });
+  }
 
   return (
     <div
