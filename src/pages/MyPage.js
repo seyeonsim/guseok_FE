@@ -131,7 +131,7 @@ function MyPage({ onRegionChange }) {
             </div>
             <div className="mypage-item">
               <label>전화번호</label>
-              <input type="text" value="010-6448-9160" readOnly />
+              <input type="text" value="010-1111-2222" readOnly />
             </div>
           </div>
           <div className="mypage-row">
