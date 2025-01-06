@@ -179,7 +179,7 @@ function MyPage({ onRegionChange }) {
 
       <div className="liked-parks-section">
         <h3>내가 좋아요한 흡연 구역</h3>
-        {likedParks.length === 0 ? (
+        {likedSmokingAreas.length === 0 ? (
           <p>아직 좋아요한 흡연 구역이 없습니다.</p>
         ) : (
           <div className="liked-park-cards">
