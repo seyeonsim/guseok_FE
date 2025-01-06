@@ -57,7 +57,7 @@ const App = () => {
   return (
     <>
     <BrowserRouter>
-      <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+      <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} region={region} />
       <Routes>
         <Route path="/" element={<MainPage />}/>
         <Route path="/main" element={<MainPage />} />

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
  import "../styles/new/Header.css";
 import logoImage from '../images/channels4_profile-Photoroom.png'; // 이미지 경로 수정
 
-function Header({ isLoggedIn, onLogout }) {
+function Header({ isLoggedIn, onLogout, region }) {
     const navigate = useNavigate();
 
     const handleLogin = () => {
@@ -50,7 +50,7 @@ function Header({ isLoggedIn, onLogout }) {
                     </ul>
                 </nav>
                 <div className="auth-buttons">
-                    {isLoggedIn ? (
+                    {isLoggedIn && region ? (
                         <>
                         <button className="mypage-btn" onClick={handleMyPage}>
                             마이페이지
