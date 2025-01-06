@@ -89,21 +89,23 @@ const ParkCard = ({ park }) => {
 
         {/* ❶ 공원 이름 + 하트 아이콘을 한 줄에 배치 */}
         <div className="park-title-row">
-          <h2 className="park-name">{name}</h2>
+          <h2 className="park-name">{name}
+            {/* 하트 아이콘 (항상 보이도록) */}
+            <span
+              className="like-icon"
+              onClick={toggleLike}
+              style={{
+                fontSize: "24px",
+                cursor: "pointer",
+                color: liked ? "red" : "gray",
+                marginLeft: "10px", // 필요시 간격 조절
+              }}
+            >
+              {liked ? "🩵" : "🤍"}
+            </span>
 
-          {/* 하트 아이콘 (항상 보이도록) */}
-          <div
-            className="like-icon"
-            onClick={toggleLike}
-            style={{
-              fontSize: "24px",
-              cursor: "pointer",
-              color: liked ? "red" : "gray",
-              marginLeft: "10px", // 필요시 간격 조절
-            }}
-          >
-            {liked ? "❤️" : "🤍"}
-          </div>
+          </h2>
+
         </div>
 
         <p className="park-address">
