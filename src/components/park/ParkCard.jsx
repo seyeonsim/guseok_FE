@@ -117,7 +117,6 @@ const ParkCard = ({ park }) => {
 
       </div>
 
-    </div>
   );
 };
 
