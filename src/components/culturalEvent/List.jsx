@@ -1,3 +1,5 @@
+// 작성자 : 심세연
+
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "../../styles/new/List.css"
