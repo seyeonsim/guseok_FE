@@ -1,3 +1,5 @@
+//작성자: 윤정연;
+
 import React, { useEffect, useState } from 'react';
 import '../styles/MyPage.css';
 import apiClient from '../api/apiClient';
