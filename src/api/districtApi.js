@@ -1,3 +1,5 @@
+/* 작성자 : 심세연 */
+
 import axios from "axios";
 
 export const getEventList = async (district, setEvent, limit = null) => {

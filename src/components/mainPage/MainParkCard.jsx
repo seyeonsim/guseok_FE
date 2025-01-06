@@ -1,3 +1,5 @@
+// 작성자 : 심세연
+
 import { Link } from "react-router-dom";
 import "../../styles/new/MainEventCard.css";
 

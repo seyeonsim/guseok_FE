@@ -1,3 +1,5 @@
+// 작성자 : 심세연
+
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 

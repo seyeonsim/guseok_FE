@@ -1,3 +1,5 @@
+// 작성자 : 심세연
+
 function MainEventCard({eventData}) {
     return ( <>
     <div className="main-card">

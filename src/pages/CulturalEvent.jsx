@@ -1,3 +1,5 @@
+// 작성자 : 심세연
+
 import { useEffect, useState } from "react";
 import Map from "../components/culturalEvent/Map";
 import axios from "axios";

@@ -1,3 +1,5 @@
+// 작성자 : 심세연
+
 import { useEffect, useRef } from "react";
 
 function Map({ event, districtCoordinates, selectedEvent, onMarkerClick }) {

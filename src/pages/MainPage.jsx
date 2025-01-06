@@ -1,3 +1,5 @@
+// 작성자 : 심세연
+
 import { useEffect, useState } from "react";
 import { getEventList, getParkList, getUserDistrict } from "../api/districtApi";
 import MainEventCard from "../components/mainPage/MainEventCard";
